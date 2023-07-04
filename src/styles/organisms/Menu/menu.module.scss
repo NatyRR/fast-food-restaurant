@@ -1,0 +1,26 @@
+.div_padre {
+  background-color: rgb(255, 254, 241);
+
+  .container {
+    height: 100%;
+    margin-block: 2rem;
+
+    .menu_buttons {
+      width: 100%;
+      display: flex;
+      padding-inline: 3rem;
+      justify-content: space-between;
+
+      .wrapper_button {
+        width: 10rem;
+      }
+    }
+  }
+}
+
+.modal_container {
+  .modal {
+    .delivery {
+    }
+  }
+}

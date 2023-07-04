@@ -1,0 +1,23 @@
+@import "/src/styles/variables.scss";
+
+.button {
+  width: 100%;
+  border-radius: 30px;
+}
+
+.button_primary {
+  @extend .button;
+}
+
+.button_naranja {
+  @extend .button;
+  width: 100%;
+  height: 36px;
+  border: #fd8a1f;
+  background-color: #fd8a1f;
+
+  &:hover {
+    border: #fd8a1f;
+    background-color: #fd8a1f;
+  }
+}

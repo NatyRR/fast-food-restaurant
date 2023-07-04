@@ -1,0 +1,29 @@
+.container {
+  height: 12vh;
+  background-color: #ffffff;
+  display: flex;
+
+  .logo {
+    height: 100%;
+    margin-left: 2rem;
+    margin-top: 1rem;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  .items {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    // background-color: aqua;
+    gap: 3rem;
+    margin-top: 2.9rem;
+    margin-right: 3rem;
+    .item_link {
+      text-decoration: none;
+      color: #fd8a1f;
+    }
+  }
+}
