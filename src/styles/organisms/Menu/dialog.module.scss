@@ -1,0 +1,70 @@
+.modal {
+  .delivery {
+    h4 {
+      margin-left: 0.5rem;
+    }
+
+    .opcions {
+      gap: 2rem;
+      display: flex;
+      margin: 0.8rem;
+    }
+  }
+
+  .paymentMethod {
+    margin: 0.8rem;
+
+    .effective_method {
+      margin: 0.9rem;
+
+      .input_num {
+        gap: 0.5rem;
+        display: flex;
+
+        .monto {
+          margin-top: 0.6rem;
+        }
+      }
+    }
+    .transferMethod {
+      margin: 1rem;
+
+      .account_Information {
+        width: 40%;
+        margin: 1rem;
+        border-radius: 10px;
+        border: 1px solid rgb(253, 183, 78);
+        background-color: rgb(255, 238, 227);
+        h6 {
+          text-align: center;
+          margin-top: 0.5rem;
+        }
+        span {
+          font-weight: 500;
+          margin-left: 0.5rem;
+        }
+
+        p {
+          margin-left: 0.6rem;
+        }
+      }
+    }
+
+    .confirm_Payment {
+      gap: 2rem;
+      display: flex;
+      margin-top: 2rem;
+    }
+  }
+
+  .footer_buttons {
+    margin-top: 2rem;
+    margin-left: 1.3rem;
+    justify-content: end;
+
+    button {
+      width: 90%;
+      border-radius: 5px;
+    }
+  }
+}
