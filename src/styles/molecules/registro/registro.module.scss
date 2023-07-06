@@ -1,0 +1,88 @@
+.container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 252, 248);
+
+  .form {
+    gap: 1rem;
+    width: 35%;
+    height: 100%;
+    display: flex;
+    padding: 1.5rem;
+    margin-top: 5rem;
+    border-radius: 1.2rem;
+    flex-direction: column;
+    background-color: rgb(240, 221, 203);
+
+    .title {
+      display: flex;
+      justify-content: center;
+      span {
+        font-size: 2rem;
+        font-weight: 600;
+        color: rgb(252, 178, 118);
+      }
+    }
+
+    .name_lastName {
+      gap: 0.8rem;
+      display: flex;
+      .input_text {
+        height: 2.5rem;
+      }
+    }
+    .input_gmail {
+      height: 2.5rem;
+    }
+    .input_password {
+      height: 2.5rem;
+    }
+
+    .span_password {
+      color: #fc7765;
+      font-weight: 600;
+      span {
+      }
+    }
+
+    .input_number {
+      width: 50%;
+      height: 2.5rem;
+    }
+
+    .text_button {
+      gap: 5rem;
+      display: flex;
+      padding-block: 1.3rem;
+
+      .link {
+        text-decoration: none;
+        color: rgb(255, 166, 32);
+        span {
+          font-weight: 500;
+          font-size: 1.1rem;
+          padding-left: 1.4rem;
+
+          b {
+            color: rgb(75, 204, 255);
+          }
+        }
+      }
+
+      .button_link {
+        width: 40%;
+        button {
+          width: 100%;
+          border-radius: 7px;
+
+          &:hover {
+            border: #fd8a1f;
+            background-color: #fd8a1f;
+          }
+        }
+      }
+    }
+  }
+}

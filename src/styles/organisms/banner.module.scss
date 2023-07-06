@@ -18,17 +18,17 @@
   height: 50vh;
 
   .title {
-    margin-top: 1rem;
+    margin-top: 1.3rem;
     text-align: center;
     h1 {
       color: #fd8a1f;
       font-weight: 700;
-      font-size: 3.5rem;
+      font-size: 3rem;
     }
   }
 
   .textos {
-    margin-top: 1.7rem;
+    margin-top: 1.5rem;
     padding-inline: 4rem;
     p {
       font-weight: 600;
@@ -38,7 +38,7 @@
 
   .button {
     width: 50%;
-    margin-top: 3rem;
+    margin-top: 1.9rem;
     margin-left: 7rem;
     &:hover {
       border: #fd8a1f;
