@@ -1,9 +1,7 @@
-import styles from "@/styles/Home.module.scss";
-import { Layout } from "@/molecules/Layout/Layout";
-import { Banner } from "@/components/Banner/Banner";
-import { Container } from "react-bootstrap";
-import { Card } from "@/components/Menu/Card";
-import { Menu } from "@/components/Menu/Menu";
+// components
+import { Banner } from '@/components/organisms/Banner';
+import { Layout } from '@/components/molecules/Layout';
+import { Menu } from '@/components/organisms/Menu';
 
 export default function Home() {
   return (

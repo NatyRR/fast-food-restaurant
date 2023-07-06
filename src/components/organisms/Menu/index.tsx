@@ -1,21 +1,20 @@
-//components
-import { Food } from "./food/Food";
-import { Extras } from "./extrass/Extras";
+// main tools
+import { useState } from 'react';
 
-//PrimeReact
-import { Dialog } from "primereact/dialog";
-import { RadioButton } from "primereact/radiobutton";
+//components
+import { Button } from '@/components/atoms/Button';
+import { Extras } from './Extras';
+import { FormPay } from './FormPay';
+import { Food } from './Food';
 
 //Boostrap
-import { Col, Container, Row } from "react-bootstrap";
+import { Container } from 'react-bootstrap';
 
 //styles
-import classes from "@/styles/organisms/Menu/menu.module.scss";
+import classes from '@/styles/organisms/Menu/menu.module.scss';
 
 //types
-import { FC, useState } from "react";
-import { Button } from "@/atoms/Button";
-import { FormPay } from "./FormPay";
+import { FC } from 'react';
 
 export const Menu: FC = () => {
   const [activo, setActivo] = useState(true);
@@ -32,23 +31,23 @@ export const Menu: FC = () => {
           <div className={classes.menu_buttons}>
             {!activo && (
               <div className={classes.wrapper_button}>
-                <Button variant="naranja" onClick={() => setActivo(true)}>
+                <Button variant='naranja' onClick={() => setActivo(true)}>
                   Atras
                 </Button>
               </div>
             )}
 
             {activo ? (
-              <div className="w-100 d-flex justify-content-end">
+              <div className='w-100 d-flex justify-content-end'>
                 <div className={classes.wrapper_button}>
-                  <Button variant="naranja" onClick={() => setActivo(false)}>
+                  <Button variant='naranja' onClick={() => setActivo(false)}>
                     Siguiente
                   </Button>
                 </div>
               </div>
             ) : (
               <div className={classes.wrapper_button} onClick={handleShow}>
-                <Button variant="naranja">Pagar</Button>
+                <Button variant='naranja'>Pagar</Button>
               </div>
             )}
           </div>

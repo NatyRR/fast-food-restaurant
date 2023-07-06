@@ -1,21 +1,21 @@
 // components
-import { Button } from "@/atoms/Button";
+import { Button } from '@/components/atoms/Button';
 
 // Boostrap
-import { Row, Col, Image, Container } from "react-bootstrap";
+import { Row, Col, Image, Container } from 'react-bootstrap';
 
 //Prime react
-import { Carousel } from "primereact/carousel";
+import { Carousel } from 'primereact/carousel';
 
 //utils
-import { panels } from "./utils";
+import { panels } from './utils';
 
 // styles
-import classes from "@/styles/organisms/banner.module.scss";
+import classes from '@/styles/organisms/banner.module.scss';
 
 // types
-import { PanelType } from "./utils";
-import { FC } from "react";
+import { PanelType } from './utils';
+import { FC } from 'react';
 
 export const Banner: FC = () => {
   const templatePanel = (panel: PanelType) => {
@@ -31,12 +31,12 @@ export const Banner: FC = () => {
           </div>
 
           <div className={classes.button}>
-            <Button variant="naranja">Registrate</Button>
+            <Button variant='naranja'>Registrate</Button>
           </div>
         </Col>
 
         <Col xs={12} md={6} className={classes.imagen}>
-          <Image src={panel.imagen[0]} alt="imagen" />
+          <Image src={panel.imagen[0]} alt='imagen' />
         </Col>
       </Row>
     );

@@ -1,35 +1,36 @@
+//Main Tools
+import { useState } from 'react';
+
 //Components
-import { Button } from "@/atoms/Button";
+import { Button } from '@/components/atoms/Button';
 
 //Boostrap
-import { Col, Row } from "react-bootstrap";
+import { Col, Row } from 'react-bootstrap';
 
 //primeReact
-import { Dialog } from "primereact/dialog";
-import { InputText } from "primereact/inputtext";
-import { RadioButton } from "primereact/radiobutton";
-import { InputNumber } from "primereact/inputnumber";
-import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
-
-//Main Tools
-import { useState } from "react";
+import { InputNumber } from 'primereact/inputnumber';
+import { RadioButton } from 'primereact/radiobutton';
+import { InputText } from 'primereact/inputtext';
+import { Dropdown } from 'primereact/dropdown';
+import { Dialog } from 'primereact/dialog';
 
 //utils
 import {
   accountInformation,
-  effectiveMethodOptions,
   paymentMethodOptions,
   transferMethodOptions,
-} from "./utils";
+  effectiveMethodOptions,
+} from './utils';
 
 //Enums
-import { paymentMethodEnum } from "@/common/enums";
+import { paymentMethodEnum } from '@/common/enums';
 
 //styles
-import classes from "@/styles/organisms/Menu/dialog.module.scss";
+import classes from '@/styles/organisms/Menu/dialog.module.scss';
 
 //types
-import { FC } from "react";
+import { DropdownChangeEvent } from 'primereact/dropdown';
+import { FC } from 'react';
 
 type DialogProps = {
   showModal: boolean;
@@ -40,17 +41,17 @@ export const FormPay: FC<DialogProps> = ({ showModal, handleShow }) => {
   const [delivery, setDelivery] = useState(false);
   const [selectedMethod, setSelectedMethod] =
     useState<keyof typeof paymentMethodEnum>();
-  const [effectiveMethod, setEffectiveMethod] = useState("");
+  const [effectiveMethod, setEffectiveMethod] = useState('');
   const [moneyCash, setMoneyCash] = useState<number | null>(null);
-  const [transferMethod, setTransferMethod] = useState("");
+  const [transferMethod, setTransferMethod] = useState('');
   // input file (input text por los momentos)
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
 
   return (
     <Dialog
-      header="Formulario de pago"
+      header='Formulario de pago'
       visible={showModal}
-      style={{ width: "50vw" }}
+      style={{ width: '50vw' }}
       onHide={handleShow}
       draggable={false}
       resizable={false}
@@ -59,27 +60,27 @@ export const FormPay: FC<DialogProps> = ({ showModal, handleShow }) => {
       <div className={classes.delivery}>
         <h4>¿Desea incluir servicio de delivery?</h4>
         <div className={classes.opcions}>
-          <div className="flex align-items-center">
+          <div className='flex align-items-center'>
             <RadioButton
-              inputId="ingredient1"
-              name="si"
-              value="Si"
+              inputId='ingredient1'
+              name='si'
+              value='Si'
               onChange={(e) => setDelivery(true)}
               checked={delivery}
             />
-            <label htmlFor="Opcion1" className="ml-2">
+            <label htmlFor='Opcion1' className='ml-2'>
               Si
             </label>
           </div>
-          <div className="flex align-items-center">
+          <div className='flex align-items-center'>
             <RadioButton
-              inputId="Opcion2"
-              name="No"
-              value="No"
+              inputId='Opcion2'
+              name='No'
+              value='No'
               onChange={(e) => setDelivery(false)}
               checked={!delivery}
             />
-            <label htmlFor="ingredient1" className="ml-2">
+            <label htmlFor='ingredient1' className='ml-2'>
               No
             </label>
           </div>
@@ -93,8 +94,8 @@ export const FormPay: FC<DialogProps> = ({ showModal, handleShow }) => {
             value={selectedMethod}
             onChange={(e: DropdownChangeEvent) => setSelectedMethod(e.value)}
             options={paymentMethodOptions}
-            placeholder="Selecciona tu metodo"
-            className="w-full md:w-14rem"
+            placeholder='Selecciona tu metodo'
+            className='w-full md:w-14rem'
           />
         </div>
 
@@ -107,19 +108,19 @@ export const FormPay: FC<DialogProps> = ({ showModal, handleShow }) => {
                   setEffectiveMethod(e.value)
                 }
                 options={effectiveMethodOptions}
-                placeholder="Divisas"
-                className="w-full md:w-14rem"
+                placeholder='Divisas'
+                className='w-full md:w-14rem'
               />
             </div>
             <div className={classes.input_num}>
               <div className={classes.monto}>
                 <span>
-                  {" "}
-                  <b>Monto de billete a pagar:</b>{" "}
+                  {' '}
+                  <b>Monto de billete a pagar:</b>{' '}
                 </span>
               </div>
               <InputNumber
-                inputId="integeronly"
+                inputId='integeronly'
                 value={moneyCash}
                 onValueChange={(e) => setMoneyCash(e.value!)}
               />
@@ -133,8 +134,8 @@ export const FormPay: FC<DialogProps> = ({ showModal, handleShow }) => {
               value={transferMethod}
               onChange={(e: DropdownChangeEvent) => setTransferMethod(e.value)}
               options={transferMethodOptions}
-              placeholder="Cuentas"
-              className="w-full md:w-14rem"
+              placeholder='Cuentas'
+              className='w-full md:w-14rem'
             />
 
             {accountInformation.map((item, index) => {
@@ -177,10 +178,10 @@ export const FormPay: FC<DialogProps> = ({ showModal, handleShow }) => {
 
       <Row className={classes.footer_buttons}>
         <Col xs={3} md={3} className={classes.Col}>
-          <Button variant="naranja">Cancelar</Button>{" "}
+          <Button variant='naranja'>Cancelar</Button>{' '}
         </Col>
         <Col xs={3} md={3}>
-          <Button variant="naranja">Pagar</Button>
+          <Button variant='naranja'>Pagar</Button>
         </Col>
       </Row>
     </Dialog>

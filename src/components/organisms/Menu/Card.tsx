@@ -1,14 +1,14 @@
-//boostrap
-import { Image } from "react-bootstrap";
-
 //components
-import { Button } from "@/atoms/Button";
+import { Button } from '@/components/atoms/Button';
+
+//boostrap
+import { Image } from 'react-bootstrap';
 
 //styles
-import classes from "@/styles/organisms/Menu/card.module.scss";
+import classes from '@/styles/organisms/Menu/card.module.scss';
 
 //types
-import { FC } from "react";
+import { FC } from 'react';
 
 type CardProps = {
   imagen: string;
@@ -22,7 +22,7 @@ export const Card: FC<CardProps> = ({ imagen, sabor, info, price }) => {
     <div className={classes.card_container}>
       <div className={classes.container_imagen}>
         <div className={classes.image}>
-          <Image src={imagen} alt="imagen referencial" />
+          <Image src={imagen} alt='imagen referencial' />
         </div>
       </div>
       <div className={classes.card}>
@@ -35,7 +35,7 @@ export const Card: FC<CardProps> = ({ imagen, sabor, info, price }) => {
         </div>
 
         <div className={classes.button}>
-          <Button variant="naranja">Add To Cart</Button>
+          <Button variant='naranja'>Add To Cart</Button>
         </div>
       </div>
     </div>
