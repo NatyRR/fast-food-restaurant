@@ -1,7 +1,14 @@
-import { FC } from "react";
-import classes from "@/styles/molecules/Layout/layout.module.scss";
-import Head from "next/head";
-import { Navbar } from "../navbar/Navbar";
+// main tools
+import Head from 'next/head';
+
+// components
+import { Navbar } from '../navbar';
+
+// styles
+import classes from '@/styles/molecules/Layout/layout.module.scss';
+
+// types
+import { FC } from 'react';
 
 interface Layoutprops {
   title?: string;
@@ -9,7 +16,7 @@ interface Layoutprops {
 }
 
 export const Layout: FC<Layoutprops> = ({
-  title = "Fact Food Restaurand",
+  title = 'Fact Food Restaurand',
   children,
 }) => {
   return (
