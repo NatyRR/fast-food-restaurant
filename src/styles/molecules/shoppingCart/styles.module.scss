@@ -1,0 +1,16 @@
+.sidebar {
+  width: 25rem !important;
+}
+
+.container {
+  .title_control {
+    display: flex;
+    margin-bottom: 1rem;
+    align-items: center;
+    justify-content: space-between;
+
+    .icon {
+      cursor: pointer;
+    }
+  }
+}

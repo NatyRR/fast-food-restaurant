@@ -1,0 +1,54 @@
+@import '/src/styles/variables.scss';
+
+.container {
+  height: 5rem;
+  align-items: center;
+  border: 1px solid $orange;
+
+  .img {
+    height: 100%;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .infoProduct {
+    h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin: 0.5rem 0;
+    }
+    .price {
+      padding: 5px 10px;
+      width: max-content;
+      border-radius: 20px;
+      border: 1px solid $orange;
+      span {
+        color: $orange;
+      }
+    }
+  }
+
+  .controls {
+    gap: 0.5rem;
+    display: flex;
+    align-items: center;
+
+    .button_control {
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      color: $orange;
+      cursor: pointer;
+      align-items: center;
+      border-radius: 50%;
+      justify-content: center;
+      border: 1px solid $orange;
+      background-color: transparent;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}
