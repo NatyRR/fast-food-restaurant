@@ -41,14 +41,16 @@ export const Layout: FC<Layoutprops> = ({
         <Navbar />
         <main>{children}</main>
 
-        <Row className={classes.floatButton}>
-          <Button variant='naranja' onClick={handleShow}>
-            <div className='d-flex justify-content-between'>
-              <Cart4 size={20} />
-              <span>{shoppingCartState.amount}$</span>
-            </div>
-          </Button>
-        </Row>
+        {shoppingCartState.amount > 0 && (
+          <Row className={classes.floatButton}>
+            <Button variant='naranja' onClick={handleShow}>
+              <div className='d-flex justify-content-between'>
+                <Cart4 size={20} />
+                <span>{shoppingCartState.amount}$</span>
+              </div>
+            </Button>
+          </Row>
+        )}
       </div>
     </div>
   );

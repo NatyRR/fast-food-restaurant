@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Button } from '@/components/atoms/Button';
 
 //Boostrap
-import { Col, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 
 //primeReact
 import { InputNumber } from 'primereact/inputnumber';
@@ -22,6 +22,9 @@ import {
   effectiveMethodOptions,
 } from './utils';
 
+// hooks
+import { useShoppingCart } from '@/hooks/useShoppingCart';
+
 //Enums
 import { paymentMethodEnum } from '@/common/enums';
 
@@ -33,154 +36,170 @@ import { DropdownChangeEvent } from 'primereact/dropdown';
 import { FC } from 'react';
 
 type DialogProps = {
-  showModal: boolean;
+  showModalForm: boolean;
   handleShow: () => void;
 };
 
-export const FormPay: FC<DialogProps> = ({ showModal, handleShow }) => {
+export const FormPay: FC<DialogProps> = ({ showModalForm, handleShow }) => {
+  const [ref, setRef] = useState('');
   const [delivery, setDelivery] = useState(false);
+  const [transferMethod, setTransferMethod] = useState('');
+  const [effectiveMethod, setEffectiveMethod] = useState('');
+  const { shoppingCartState, handleShowForm } = useShoppingCart();
+  const [moneyCash, setMoneyCash] = useState<number | null>(null);
   const [selectedMethod, setSelectedMethod] =
     useState<keyof typeof paymentMethodEnum>();
-  const [effectiveMethod, setEffectiveMethod] = useState('');
-  const [moneyCash, setMoneyCash] = useState<number | null>(null);
-  const [transferMethod, setTransferMethod] = useState('');
-  // input file (input text por los momentos)
-  const [value, setValue] = useState('');
 
   return (
     <Dialog
-      header='Formulario de pago'
-      visible={showModal}
-      style={{ width: '50vw' }}
-      onHide={handleShow}
+      closable={false}
       draggable={false}
       resizable={false}
+      onHide={handleShow}
+      visible={showModalForm}
       className={classes.modal}
+      header={`Total a pagar: $${shoppingCartState.amount}`}
     >
-      <div className={classes.delivery}>
-        <h4>¿Desea incluir servicio de delivery?</h4>
-        <div className={classes.opcions}>
-          <div className='flex align-items-center'>
-            <RadioButton
-              inputId='ingredient1'
-              name='si'
-              value='Si'
-              onChange={(e) => setDelivery(true)}
-              checked={delivery}
-            />
-            <label htmlFor='Opcion1' className='ml-2'>
-              Si
-            </label>
-          </div>
-          <div className='flex align-items-center'>
-            <RadioButton
-              inputId='Opcion2'
-              name='No'
-              value='No'
-              onChange={(e) => setDelivery(false)}
-              checked={!delivery}
-            />
-            <label htmlFor='ingredient1' className='ml-2'>
-              No
-            </label>
-          </div>
-        </div>
-      </div>
+      <Container className={classes.container}>
+        <h4 className='text-center mb-5'>Formulario de pago</h4>
 
-      <div className={classes.paymentMethod}>
-        <h4>Metodos de pago</h4>
-        <div className={classes.paymentMethodOptions}>
-          <Dropdown
-            value={selectedMethod}
-            onChange={(e: DropdownChangeEvent) => setSelectedMethod(e.value)}
-            options={paymentMethodOptions}
-            placeholder='Selecciona tu metodo'
-            className='w-full md:w-14rem'
-          />
+        <div className={classes.delivery}>
+          <label className='text-center'>
+            ¿Desea incluir servicio de delivery?
+          </label>
+          <div className={classes.options}>
+            <div className='d-flex gap-2 align-items-center'>
+              <label className='ml-2'>Si</label>
+              <RadioButton
+                checked={delivery}
+                onChange={(e) => setDelivery(true)}
+              />
+            </div>
+            <div className='d-flex gap-2 align-items-center'>
+              <label className='ml-2'>No</label>
+              <RadioButton
+                checked={!delivery}
+                onChange={(e) => setDelivery(false)}
+              />
+            </div>
+          </div>
+
+          {delivery && (
+            <div className={classes.delivery_information}>
+              <label>Ingresa una direccion de entrega</label>
+              <InputText
+                value={ref}
+                className='w-100'
+                onChange={(e) => setRef(e.target.value)}
+              />
+            </div>
+          )}
         </div>
 
-        {selectedMethod === paymentMethodEnum.CASH && (
-          <div className={classes.effective_method}>
-            <div className={classes.badge}>
+        <div className={classes.paymentMethods}>
+          <div className='d-flex flex-column gap-1'>
+            <label>Seleccione con que desea pagar</label>
+            <div className={classes.paymentMethodOptions}>
               <Dropdown
-                value={effectiveMethod}
+                className='w-100'
+                value={selectedMethod}
+                options={paymentMethodOptions}
+                placeholder='Selecciona tu metodo'
                 onChange={(e: DropdownChangeEvent) =>
-                  setEffectiveMethod(e.value)
+                  setSelectedMethod(e.value)
                 }
-                options={effectiveMethodOptions}
-                placeholder='Divisas'
-                className='w-full md:w-14rem'
-              />
-            </div>
-            <div className={classes.input_num}>
-              <div className={classes.monto}>
-                <span>
-                  {' '}
-                  <b>Monto de billete a pagar:</b>{' '}
-                </span>
-              </div>
-              <InputNumber
-                inputId='integeronly'
-                value={moneyCash}
-                onValueChange={(e) => setMoneyCash(e.value!)}
               />
             </div>
           </div>
-        )}
 
-        {selectedMethod === paymentMethodEnum.TRANSFER && (
-          <div className={classes.transferMethod}>
-            <Dropdown
-              value={transferMethod}
-              onChange={(e: DropdownChangeEvent) => setTransferMethod(e.value)}
-              options={transferMethodOptions}
-              placeholder='Cuentas'
-              className='w-full md:w-14rem'
-            />
-
-            {accountInformation.map((item, index) => {
-              if (transferMethod === item.cuenta)
-                return (
-                  <div className={classes.account_Information} key={index}>
-                    <h6>{item.cuenta}</h6>
-                    <span>Numero de cuenta:</span>
-                    <p>{item.numero_de_cuenta}</p>
-                    <span>Cedula:</span>
-                    <p>{item.cedula}</p>
-                    <span>Tipo de cuenta:</span>
-                    <p>{item.tipo_de_cuenta}</p>
-                  </div>
-                );
-            })}
-
-            <div className={classes.confirm_Payment}>
-              {/* imput file */}
-              <div className={classes.inputFile}>
-                <h6>Inserte su comprobante aqui:</h6>
-
-                <InputText
-                  value={value}
-                  onChange={(e) => setValue(e.target.value)}
+          {selectedMethod === paymentMethodEnum.CASH && (
+            <div className={classes.effective_method}>
+              <div className={classes.badge}>
+                <label> Elija la divisa con la que va a pagar </label>
+                <Dropdown
+                  className='w-100'
+                  placeholder='Divisas'
+                  value={effectiveMethod}
+                  options={effectiveMethodOptions}
+                  onChange={(e: DropdownChangeEvent) =>
+                    setEffectiveMethod(e.value)
+                  }
                 />
               </div>
-              <div className={classes.reference}>
-                <h6>Ingrese el numero de referencia:</h6>
-                <InputText
-                  value={value}
-                  onChange={(e) => setValue(e.target.value)}
-                  className={classes.num_transfer}
+              <div className={classes.input_num}>
+                <div className={classes.monto}>
+                  <label>Monto en efectivo con el que va a pagar </label>
+                </div>
+                <InputNumber
+                  value={moneyCash}
+                  inputId='integeronly'
+                  onValueChange={(e) => setMoneyCash(e.value!)}
                 />
               </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+
+          {selectedMethod === paymentMethodEnum.TRANSFER && (
+            <div className={classes.transferMethod}>
+              <div className={classes.selectAccount}>
+                <label>Seleccione una cuenta para transferir</label>
+                <Dropdown
+                  className='w-100'
+                  value={transferMethod}
+                  placeholder='Cuentas'
+                  options={transferMethodOptions}
+                  onChange={(e: DropdownChangeEvent) =>
+                    setTransferMethod(e.value)
+                  }
+                />
+              </div>
+              {accountInformation.map((item, index) => {
+                if (transferMethod === item.cuenta)
+                  return (
+                    <div className={classes.account_Information} key={index}>
+                      <h6>{item.cuenta}</h6>
+                      <span>Numero de cuenta:</span>
+                      <p>{item.numero_de_cuenta}</p>
+                      <span>Cedula:</span>
+                      <p>{item.cedula}</p>
+                      <span>Tipo de cuenta:</span>
+                      <p>{item.tipo_de_cuenta}</p>
+                    </div>
+                  );
+              })}
+
+              <div className={classes.confirm_Payment}>
+                {/* imput file */}
+                <div className={classes.inputFile}>
+                  <label>Inserte su comprobante aqui:</label>
+
+                  <input
+                    type='file'
+                    value={ref}
+                    onChange={(e) => setRef(e.target.value)}
+                  />
+                </div>
+                <div className={classes.reference}>
+                  <label>Ingrese el numero de referencia:</label>
+                  <InputText
+                    value={ref}
+                    className='w-100'
+                    onChange={(e) => setRef(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </Container>
 
       <Row className={classes.footer_buttons}>
-        <Col xs={3} md={3} className={classes.Col}>
-          <Button variant='naranja'>Cancelar</Button>{' '}
+        <Col xs={6} className={classes.Col}>
+          <Button variant='naranja' onClick={handleShowForm}>
+            Cancelar
+          </Button>{' '}
         </Col>
-        <Col xs={3} md={3}>
+        <Col xs={6}>
           <Button variant='naranja'>Pagar</Button>
         </Col>
       </Row>

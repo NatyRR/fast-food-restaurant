@@ -6,5 +6,6 @@ export type ShoppingCartDataType = {
 export type ItemDataType = {
   name: string;
   price: number;
+  img: string;
   quantity: number;
 };

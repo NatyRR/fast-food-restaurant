@@ -1,11 +1,9 @@
 // main tools
 import { useCallback, useMemo, useReducer, useState } from 'react';
 
-// prime react
-import { Sidebar } from 'primereact/sidebar';
-
-// icons
-import { CaretLeft } from 'react-bootstrap-icons';
+// components
+import { FormPay } from '@/components/organisms/Menu/FormPay';
+import { ShoppingCard } from '@/components/organisms/ShoppingCart';
 
 // reducer
 import { reducer } from './reducer';
@@ -16,13 +14,8 @@ import { ShoppingContext } from './context';
 // utils
 import { shoppingCartInitialState } from './reducer/utils';
 
-// styles
-import classes from '@/styles/molecules/shoppingCart/styles.module.scss';
-
 // types
 import { FC, ReactNode } from 'react';
-import { ProductCard } from '@/components/molecules/productCard';
-import { Col, Row } from 'react-bootstrap';
 
 type shoppingCartContextProviderProps = {
   children: ReactNode;
@@ -32,10 +25,15 @@ export const ShoppingCartContextProvider: FC<
   shoppingCartContextProviderProps
 > = ({ children }) => {
   const [show, setShow] = useState(false);
+  const [showModalForm, setShowModalForm] = useState(false);
   const [shoppingCartState, dispatch] = useReducer(
     reducer,
     shoppingCartInitialState
   );
+
+  const handleShowForm = useCallback(() => {
+    setShowModalForm(!showModalForm);
+  }, [showModalForm]);
 
   const handleShow = useCallback(() => {
     setShow(!show);
@@ -45,58 +43,24 @@ export const ShoppingCartContextProvider: FC<
     () => ({
       dispatch,
       handleShow,
+      handleShowForm,
       shoppingCartState,
     }),
-    [shoppingCartState, handleShow]
+    [shoppingCartState, handleShow, handleShowForm]
   );
 
   return (
     <ShoppingContext.Provider value={context}>
       {children}
 
-      <Sidebar
-        visible={show}
-        position='right'
-        onHide={handleShow}
-        showCloseIcon={false}
-        className={classes.sidebar}
-      >
-        <div className={classes.container}>
-          <div className={classes.title_control}>
-            <div className={classes.icon}>
-              <CaretLeft size={20} />
-            </div>
-            <h4>Carrito de compras</h4>
-          </div>
+      <ShoppingCard
+        show={show}
+        handleShow={handleShow}
+        handleShowForm={handleShowForm}
+        shoppingCartState={shoppingCartState}
+      />
 
-          <Row className='gap-3'>
-            <Col xs={12}>
-              <ProductCard />
-            </Col>
-            <Col xs={12}>
-              <ProductCard />
-            </Col>
-            <Col xs={12}>
-              <ProductCard />
-            </Col>
-            <Col xs={12}>
-              <ProductCard />
-            </Col>
-            <Col xs={12}>
-              <ProductCard />
-            </Col>
-            <Col xs={12}>
-              <ProductCard />
-            </Col>
-            <Col xs={12}>
-              <ProductCard />
-            </Col>
-            <Col xs={12}>
-              <ProductCard />
-            </Col>
-          </Row>
-        </div>
-      </Sidebar>
+      <FormPay showModalForm={showModalForm} handleShow={handleShowForm} />
     </ShoppingContext.Provider>
   );
 };

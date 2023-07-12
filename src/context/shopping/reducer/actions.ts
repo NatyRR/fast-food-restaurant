@@ -4,50 +4,63 @@ import { ItemDataType, ShoppingCartDataType } from '@/types/shoppingCart';
 export const shoppingCartActions = {
   addToCart: (state: ShoppingCartDataType, payload: { item: ItemDataType }) => {
     const { item } = payload;
-    state.items.push(item);
-    return state;
+    const newState = { ...state, items: [...state.items] };
+    newState.items.push(item);
+    return newState;
   },
 
   addQuantityToItem: (
     state: ShoppingCartDataType,
-    payload: { item: ItemDataType }
+    payload: { itemName: string }
   ) => {
-    const { item } = payload;
-    const itemIndex = state.items.findIndex((i) => i.name === item.name);
-    state.items[itemIndex].quantity = item.quantity++;
-    return state;
+    const { itemName } = payload;
+    const newState = { ...state, items: [...state.items] };
+    const itemIndex = newState.items.findIndex((i) => i.name === itemName);
+    newState.items[itemIndex] = {
+      ...newState.items[itemIndex],
+      quantity: newState.items[itemIndex].quantity + 1,
+    };
+    return newState;
   },
 
   removeQuantityToItem: (
     state: ShoppingCartDataType,
-    payload: { item: ItemDataType }
+    payload: { itemName: string }
   ) => {
-    const { item } = payload;
-    const itemIndex = state.items.findIndex((i) => i.name === item.name);
-    state.items[itemIndex].quantity = item.quantity--;
-    return state;
+    const { itemName } = payload;
+    const newState = { ...state, items: [...state.items] };
+    const itemIndex = newState.items.findIndex((i) => i.name === itemName);
+    newState.items[itemIndex] = {
+      ...newState.items[itemIndex],
+      quantity: newState.items[itemIndex].quantity - 1,
+    };
+    return newState;
   },
 
   removeFromCart: (
     state: ShoppingCartDataType,
-    payload: { item: ItemDataType }
+    payload: { itemName: string }
   ) => {
-    const { item } = payload;
-    const itemIndex = state.items.findIndex((i) => i.name === item.name);
-    state.items.splice(itemIndex, 1);
-    return state;
+    const { itemName } = payload;
+    const newState = { ...state, items: [...state.items] };
+    const itemIndex = newState.items.findIndex((i) => i.name === itemName);
+    newState.items.splice(itemIndex, 1);
+    return newState;
   },
 
-  updateAmount: (state: ShoppingCartDataType, payload?: number) => {
+  updateAmount: (state: ShoppingCartDataType, payload?: number | null) => {
+    const newState = { ...state, items: [...state.items] };
+
     if (payload) {
-      state.amount = state.amount + payload;
-      return state;
+      newState.amount = newState.amount + payload;
+      return newState;
     }
 
-    const amount = state.items.reduce((acc, item) => {
+    const amount = newState.items.reduce((acc, item) => {
       return acc + item.price * item.quantity;
     }, 0);
-    state.amount = amount;
-    return state;
+
+    newState.amount = amount;
+    return newState;
   },
 };

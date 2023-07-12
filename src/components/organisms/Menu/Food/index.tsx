@@ -26,12 +26,7 @@ export const Food: FC = () => {
       <Row className={classes.row}>
         {listCards.map((item, index) => (
           <Col xs={12} md={4} key={item.sabor} className={classes.col}>
-            <Card
-              imagen={item.imagen}
-              sabor={item.sabor}
-              info={item.info}
-              price={item.price}
-            />
+            <Card img={item.imagen} name={item.sabor} price={item.price} />
           </Col>
         ))}
       </Row>

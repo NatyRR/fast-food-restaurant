@@ -1,5 +1,9 @@
 .sidebar {
   width: 25rem !important;
+
+  ::-webkit-scrollbar {
+    width: 0 !important;
+  }
 }
 
 .container {
