@@ -2,7 +2,17 @@
 import Head from 'next/head';
 
 // components
+import { Button } from '@/components/atoms/Button';
 import { Navbar } from '../navbar';
+
+// bootstrap
+import { Col, Row } from 'react-bootstrap';
+
+// icons
+import { Cart4 } from 'react-bootstrap-icons';
+
+// hooks
+import { useShoppingCart } from '@/hooks/useShoppingCart';
 
 // styles
 import classes from '@/styles/molecules/Layout/layout.module.scss';
@@ -19,6 +29,8 @@ export const Layout: FC<Layoutprops> = ({
   title = 'Fact Food Restaurand',
   children,
 }) => {
+  const { shoppingCartState, handleShow } = useShoppingCart();
+
   return (
     <div className={classes.container}>
       <Head>
@@ -28,6 +40,17 @@ export const Layout: FC<Layoutprops> = ({
       <div className={classes.content}>
         <Navbar />
         <main>{children}</main>
+
+        {shoppingCartState.amount > 0 && (
+          <Row className={classes.floatButton}>
+            <Button variant='naranja' onClick={handleShow}>
+              <div className='d-flex justify-content-between'>
+                <Cart4 size={20} />
+                <span>{shoppingCartState.amount}$</span>
+              </div>
+            </Button>
+          </Row>
+        )}
       </div>
     </div>
   );

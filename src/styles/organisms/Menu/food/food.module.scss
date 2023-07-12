@@ -1,6 +1,7 @@
 .row {
+  gap: 1rem;
+  justify-content: center;
   .col {
-    height: max-content;
-    padding-inline: 4rem;
+    height: 28rem;
   }
 }

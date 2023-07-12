@@ -21,7 +21,7 @@ export const Banner: FC = () => {
   const templatePanel = (panel: PanelType) => {
     return (
       <Row className={classes.container_template}>
-        <Col xs={12} md={6}>
+        <Col xs={12} md={6} className={classes.text_container}>
           <div className={classes.title}>
             <h1>{panel.titulo[0]}</h1>
           </div>
@@ -46,13 +46,13 @@ export const Banner: FC = () => {
     <div>
       <Container>
         <Carousel
+          circular
+          numScroll={1}
           value={panels}
           numVisible={1}
-          numScroll={1}
-          className={classes.carousel}
-          circular
           autoplayInterval={3000}
           itemTemplate={templatePanel}
+          className={classes.carousel}
         />
       </Container>
     </div>
