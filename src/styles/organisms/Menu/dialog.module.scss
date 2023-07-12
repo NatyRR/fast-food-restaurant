@@ -1,37 +1,87 @@
 .modal {
-  .delivery {
-    h4 {
-      margin-left: 0.5rem;
-    }
+  width: 28rem;
+  border-radius: 15px;
+  border: 1px solid rgb(253, 183, 78);
+  background-color: rgb(255, 254, 241);
+  box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px 0px;
 
-    .opcions {
+  :global(.p-dialog-header) {
+    background-color: transparent !important;
+  }
+
+  :global(.p-dialog-content) {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: transparent !important;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 100%;
+    border: none;
+    box-shadow: none;
+    border-radius: 0px;
+  }
+
+  .delivery {
+    .options {
       gap: 2rem;
       display: flex;
       margin: 0.8rem;
+      justify-content: center;
+    }
+
+    &_information {
+      gap: 0.5rem;
+      display: flex;
+      flex-direction: column;
     }
   }
 
-  .paymentMethod {
-    margin: 0.8rem;
+  .paymentMethods {
+    gap: 0.5rem;
+    display: flex;
+    margin-top: 2rem;
+    flex-direction: column;
 
     .effective_method {
-      margin: 0.9rem;
+      margin-top: 1rem;
+
+      .badge {
+        gap: 0.5rem;
+        display: flex;
+        flex-direction: column;
+      }
 
       .input_num {
         gap: 0.5rem;
         display: flex;
+        flex-direction: column;
 
         .monto {
           margin-top: 0.6rem;
         }
       }
     }
+
     .transferMethod {
-      margin: 1rem;
+      display: flex;
+      flex-direction: column;
+
+      .selectAccount {
+        gap: 0.5rem;
+        display: flex;
+        margin-top: 1rem;
+        flex-direction: column;
+      }
 
       .account_Information {
-        width: 40%;
-        margin: 1rem;
+        width: 90%;
+        padding: 1rem;
+        margin-top: 1rem;
         border-radius: 10px;
         border: 1px solid rgb(253, 183, 78);
         background-color: rgb(255, 238, 227);
@@ -54,16 +104,16 @@
       gap: 2rem;
       display: flex;
       margin-top: 2rem;
+      flex-direction: column;
     }
   }
 
   .footer_buttons {
     margin-top: 2rem;
-    margin-left: 1.3rem;
     justify-content: end;
 
     button {
-      width: 90%;
+      width: 100%;
       border-radius: 5px;
     }
   }

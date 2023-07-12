@@ -28,13 +28,8 @@ export const Food: FC = () => {
           <h1 className={classes.h1}>Menú</h1>
         </div>
         {listCards.map((item, index) => (
-          <Col xs={12} md={4} key={item.sabor} className={classes.col}>
-            <Card
-              imagen={item.imagen}
-              sabor={item.sabor}
-              info={item.info}
-              price={item.price}
-            />
+          <Col xs={12} md={3} key={item.sabor} className={classes.col}>
+            <Card img={item.imagen} name={item.sabor} price={item.price} />
           </Col>
         ))}
       </Row>
