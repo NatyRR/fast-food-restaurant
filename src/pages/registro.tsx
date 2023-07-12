@@ -1,14 +1,25 @@
-import { Button } from "@/atoms/Button";
-import classes from "@/styles/molecules/registro/registro.module.scss";
-import { Password } from "primereact/password";
-import { InputText } from "primereact/inputtext";
-import { Container } from "react-bootstrap";
+//main tools
 import { useEffect, useState } from "react";
-import { initialState } from "@/components/Menu/utils";
+
+// components
+import { Button } from "@/components/atoms/Button";
+
+//boostrap
+import { Container, Image } from "react-bootstrap";
+
 import Link from "next/link";
+//primeReact
+import { InputText } from "primereact/inputtext";
+import { Password } from "primereact/password";
+
+//styles
+import classes from "@/styles/molecules/registro/registro.module.scss";
+
+//utils
+import { initialStateRegistro } from "@/components/organisms/Menu/utils";
 
 export default function Registro() {
-  const [data, setData] = useState(initialState);
+  const [data, setData] = useState(initialStateRegistro);
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleChange = (e: any) => {
@@ -35,6 +46,9 @@ export default function Registro() {
 
   return (
     <Container className={classes.container} fluid>
+      <div className={classes.logo}>
+        <Image src="/asset/img/empanada3.jpg" alt="logo" />
+      </div>
       <form className={classes.form} onSubmit={handleSubmit}>
         <div className={classes.title}>
           <span>SIGN UP</span>
@@ -98,15 +112,15 @@ export default function Registro() {
         />
 
         <div className={classes.text_button}>
-          <Link href={"#"} className={classes.link}>
+          <Link href="/login" className={classes.link}>
             <span>
               Clik here to <b>login</b>
             </span>
           </Link>
 
-          <Link href={"#"} className={classes.button_link}>
+          <div className={classes.button_link}>
             <Button variant="naranja">SUBMIT</Button>
-          </Link>
+          </div>
         </div>
       </form>
     </Container>

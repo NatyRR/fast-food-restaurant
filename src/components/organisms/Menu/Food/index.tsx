@@ -1,20 +1,20 @@
 // components
-import { Card } from '../Card';
+import { Card } from "../Card";
 
 // bootstrap
-import { Col, Row } from 'react-bootstrap';
+import { Col, Row } from "react-bootstrap";
 
 // framerMotion
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 // utils
-import { listCards } from '../utils';
+import { listCards } from "../utils";
 
 // styles
-import classes from '@/styles/organisms/Menu/food/food.module.scss';
+import classes from "@/styles/organisms/Menu/food/food.module.scss";
 
 // types
-import { FC } from 'react';
+import { FC } from "react";
 
 export const Food: FC = () => {
   return (
@@ -24,6 +24,9 @@ export const Food: FC = () => {
       transition={{ duration: 1 }}
     >
       <Row className={classes.row}>
+        <div className={classes.title}>
+          <h1 className={classes.h1}>Menú</h1>
+        </div>
         {listCards.map((item, index) => (
           <Col xs={12} md={4} key={item.sabor} className={classes.col}>
             <Card

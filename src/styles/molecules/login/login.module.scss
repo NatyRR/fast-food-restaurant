@@ -1,0 +1,69 @@
+.container {
+  margin-top: 7rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  .logo {
+    height: 10%;
+    width: 10%;
+    display: flex;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .form {
+    gap: 1rem;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    border-radius: 1.2rem;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(240, 221, 203);
+
+    .input_email {
+      height: 2.4rem;
+    }
+
+    .input_password {
+      display: flex;
+      justify-content: center;
+      height: 2.4rem;
+    }
+
+    .button {
+      margin-left: 1.5rem;
+      width: 75%;
+
+      &:hover {
+        border: #fd8a1f;
+        background-color: #fd8a1f;
+      }
+    }
+  }
+
+  .registro {
+    margin-top: 0.9rem;
+    display: flex;
+    gap: 0.4rem;
+    span {
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    .link {
+      text-decoration: none;
+    }
+    b {
+      color: #fd8a1f;
+    }
+  }
+}
