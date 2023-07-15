@@ -1,0 +1,33 @@
+.card {
+  margin-top: 2rem;
+  height: 11rem;
+  width: 20%;
+  background-color: rgb(242, 255, 251);
+  border-radius: 15px;
+  border: 2px solid rgb(190, 190, 190);
+
+  .id {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    margin-left: 0.8rem;
+    padding-top: 0.3rem;
+
+    .title_info {
+      display: flex;
+      gap: 0.4rem;
+
+      span {
+        font-weight: 600;
+        color: rgb(163, 163, 163);
+      }
+    }
+
+    .line {
+      margin-right: 1rem;
+      height: 2px;
+      width: 96%;
+      background-color: rgb(223, 223, 223);
+    }
+  }
+}

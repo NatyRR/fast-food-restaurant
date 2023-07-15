@@ -154,5 +154,3 @@ export const initialStateRegistro = {
   password: "",
   lastName: "",
 };
-
-// cambio
