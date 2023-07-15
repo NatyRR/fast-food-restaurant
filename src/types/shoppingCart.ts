@@ -1,11 +1,13 @@
 export type ShoppingCartDataType = {
-  amount: number;
-  items: ItemDataType[];
+  amount?: number;
+  items?: ProductDataType[];
 };
 
-export type ItemDataType = {
-  name: string;
-  price: number;
-  img: string;
-  quantity: number;
+export type ProductDataType = {
+  id?: number;
+  flaver?: string;
+  name?: string;
+  price?: number;
+  img?: string;
+  quantity?: number;
 };

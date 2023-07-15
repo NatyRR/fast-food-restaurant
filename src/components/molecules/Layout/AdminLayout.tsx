@@ -2,6 +2,7 @@ import Head from "next/head";
 import React from "react";
 import { FC } from "react";
 import classes from "@/styles/molecules/Layout/adminLayout.module.scss";
+import { AdminNavbar } from "../navbar/AdminNavbar";
 
 interface adminLayoutprops {
   title?: string;
@@ -19,6 +20,7 @@ export const AdminLayout: FC<adminLayoutprops> = ({
       </Head>
 
       <div className={classes.content}>
+        <AdminNavbar />
         <main>{children}</main>
       </div>
     </div>
