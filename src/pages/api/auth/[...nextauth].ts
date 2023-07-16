@@ -1,33 +1,32 @@
 // main tools
-import CredentialsProvider from 'next-auth/providers/credentials';
-import NextAuth, { getServerSession } from 'next-auth/next';
-import jwtDecoder from 'jwt-decode';
-import dayjs from 'dayjs';
+import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth, { getServerSession } from "next-auth/next";
+import dayjs from "dayjs";
 
 // uitls
-import { baseUrl } from '@/utils/fetch';
-import { axiosAuthServer } from '@/lib/axios';
+import { baseUrl } from "@/utils/fetch";
+import { axiosAuthServer } from "@/lib/axios";
 
 // type
-import { GetServerSidePropsContext } from 'next';
-import { NextAuthOptions } from 'next-auth';
-import axios from 'axios';
+import { GetServerSidePropsContext } from "next";
+import { NextAuthOptions } from "next-auth";
+import axios from "axios";
 
 export const authOptions: NextAuthOptions = {
   session: { maxAge: 60 * 60 }, // initial value in seconsd, logout on a half hour of inactivity
   secret: process.env.NEXTAUTH_SECRET, // secret for JWT
-  pages: { signIn: '/login' }, // redirection url after signout
+  pages: { signIn: "/login" }, // redirection url after signout
 
   providers: [
     /**
      * credentials provider
      */
     CredentialsProvider({
-      id: 'signin',
-      name: 'signin',
+      id: "signin",
+      name: "signin",
       credentials: {
-        email: { type: 'email' },
-        password: { type: 'password' },
+        email: { type: "email" },
+        password: { type: "password" },
       },
 
       /**
@@ -50,14 +49,14 @@ export const authOptions: NextAuthOptions = {
      * credentials provider
      */
     CredentialsProvider({
-      id: 'signup',
-      name: 'signup',
+      id: "signup",
+      name: "signup",
       credentials: {
-        name: { type: 'text' },
-        phone: { type: 'text' },
-        email: { type: 'email' },
-        address: { type: 'text' },
-        password: { type: 'password' },
+        name: { type: "text" },
+        phone: { type: "text" },
+        email: { type: "email" },
+        address: { type: "text" },
+        password: { type: "password" },
       },
 
       async authorize(credentials) {

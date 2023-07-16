@@ -3,11 +3,23 @@ import { FC } from "react";
 import classes from "@/styles/molecules/card-admin/cardAdmin.module.scss";
 import { Checkbox } from "primereact/checkbox";
 import { Accordion, AccordionTab } from "primereact/accordion";
-import { Cart4, CashCoin, Person, Truck } from "react-bootstrap-icons";
+import {
+  Cart4,
+  CashCoin,
+  HourglassSplit,
+  Person,
+  Truck,
+} from "react-bootstrap-icons";
 import { UserDataType } from "../../types/user";
 import { ProductDataType } from "../../types/shoppingCart";
 import { InvoiceDataType } from "../../types/invoice";
-import { order, orders } from "../organisms/admin/utils";
+import {
+  order,
+  orders,
+  statusInvoiceOptions,
+  statusOrder,
+} from "../organisms/admin/utils";
+import { Dropdown } from "primereact/dropdown";
 
 type CardAdminProps = {
   id: number;
@@ -27,6 +39,8 @@ export const CardAdmin: FC<CardAdminProps> = ({
   products,
 }) => {
   const [checked, setChecked] = useState(false);
+  const [orderStatus, setOrderStatus] = useState("");
+  const [StatuInvoice, setStatusInvoice] = useState(invoice.status);
   return (
     <div className={classes.card}>
       <div className={classes.id}>
@@ -34,17 +48,17 @@ export const CardAdmin: FC<CardAdminProps> = ({
           <div className={classes.order_id}>
             <span>#:</span>
             <span>{id}</span>
+            <Dropdown
+              value={StatuInvoice}
+              onChange={(e) => setStatusInvoice(e.value)}
+              options={statusInvoiceOptions}
+              placeholder="Estatus pago"
+              className={classes.dropdown}
+            />
           </div>
 
           <div className={classes.status}>
-            <div className={classes.check}>
-              <Checkbox
-                onChange={(e) => setChecked(e.checked!)}
-                checked={checked}
-              ></Checkbox>
-
-              <span>{status}</span>
-            </div>
+            <div className={classes.check}></div>
           </div>
         </div>
         <div className={classes.line}></div>
@@ -62,11 +76,22 @@ export const CardAdmin: FC<CardAdminProps> = ({
           <Truck />
           <span>{address}</span>
         </div>
+
+        <div className={classes.dropdown_container}>
+          <HourglassSplit />
+          <Dropdown
+            value={orderStatus}
+            onChange={(e) => setOrderStatus(e.value)}
+            options={statusOrder}
+            placeholder="Estatus"
+            className={classes.dropdown}
+          />
+        </div>
       </div>
       <div className={classes.status_order}>
-        <div className={classes.acordion}>
-          <Accordion activeIndex={0}>
-            <AccordionTab header="Status Order">
+        <div>
+          <Accordion activeIndex={0} className={classes.acordion}>
+            <AccordionTab header="Estatus de orden">
               <div className={classes.icon}>
                 <Cart4 />
                 <span>Pedido:</span>
