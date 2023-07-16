@@ -50,7 +50,7 @@ export default function Login() {
       return;
     } else {
       const session = await getSession();
-      if (session?.user.role === 'admin') replace('/administrador');
+      if (session?.user.role === 'admin') replace('/admin');
       else replace('/');
     }
     setLoading(false);
