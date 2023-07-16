@@ -1,3 +1,5 @@
+import { InvoiceStatusEnum, orderStatusEnum } from "@/common/enums";
+
 export const order = {
   id: "1",
   status: "pending",
@@ -14,14 +16,14 @@ export const order = {
   products: [
     {
       id: "1",
-      name: "empanada",
+      name: "empanada de",
       flaver: "pollo",
       price: 10,
       quantity: 10,
     },
     {
       id: "2",
-      name: "empanada",
+      name: "empanada de",
       flaver: "carne",
       price: 10,
       quantity: 10,
@@ -46,14 +48,14 @@ export const orders = [
     products: [
       {
         id: 1,
-        name: "empanada",
+        name: "-Empanada de",
         flaver: "pollo",
         price: 10,
         quantity: 10,
       },
       {
         id: 2,
-        name: "empanada",
+        name: "-Empanada de",
         flaver: "carne",
         price: 10,
         quantity: 10,
@@ -76,21 +78,21 @@ export const orders = [
     products: [
       {
         id: 1,
-        name: "empanada",
+        name: "-Empanada de",
         flaver: "carne",
         price: 10,
         quantity: 2,
       },
       {
         id: 2,
-        name: "empanada",
+        name: "-Empanada de",
         flaver: "pollo",
         price: 10,
         quantity: 2,
       },
       {
         id: 3,
-        name: "refresco",
+        name: "-Refresco",
         flaver: "coca cola",
         price: 10,
         quantity: 2,
@@ -113,21 +115,21 @@ export const orders = [
     products: [
       {
         id: 1,
-        name: "empanada",
+        name: "-Empanada de",
         flaver: "carne",
         price: 15,
         quantity: 2,
       },
       {
         id: 2,
-        name: "empanada",
+        name: "-Empanada de",
         flaver: "pollo",
         price: 12,
         quantity: 2,
       },
       {
         id: 3,
-        name: "refresco",
+        name: "-Refresco",
         flaver: "coca cola",
         price: 10,
         quantity: 2,
@@ -150,25 +152,55 @@ export const orders = [
     products: [
       {
         id: 1,
-        name: "empanada",
+        name: "-Empanada de",
         flaver: "carne",
         price: 10,
         quantity: 2,
       },
       {
         id: 2,
-        name: "empanada",
+        name: "-Empanada de",
         flaver: "pollo",
         price: 10,
         quantity: 2,
       },
       {
         id: 3,
-        name: "refresco",
+        name: "-Refresco",
         flaver: "coca cola",
         price: 10,
         quantity: 2,
       },
     ],
+  },
+];
+
+export const statusOrder = [
+  {
+    label: "Pendiente",
+    value: orderStatusEnum.PENDING,
+  },
+  {
+    label: "En progreso",
+    value: orderStatusEnum.IN_PROGRESS,
+  },
+  {
+    label: "Entregado",
+    value: orderStatusEnum.DONE,
+  },
+];
+
+export const statusInvoiceOptions = [
+  {
+    label: "Pendiente",
+    value: InvoiceStatusEnum.PENDING,
+  },
+  {
+    label: "Pago",
+    value: InvoiceStatusEnum.PAID,
+  },
+  {
+    label: "Cancelado",
+    value: InvoiceStatusEnum.CANCELLED,
   },
 ];

@@ -19,3 +19,15 @@ export const adminStatusEnum = Object.freeze({
   PEDIDO_CANCELADO: "",
   ENTREGADO: "",
 });
+
+export const orderStatusEnum = Object.freeze({
+  PENDING: "pending",
+  IN_PROGRESS: "in_progress",
+  DONE: "done",
+});
+
+export const InvoiceStatusEnum = Object.freeze({
+  PENDING: "pending",
+  PAID: "paid",
+  CANCELLED: "cancelled",
+});
