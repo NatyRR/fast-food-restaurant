@@ -21,6 +21,9 @@ export const AdminNavbar: FC<Props> = ({ page }) => {
       </div>
 
       <div className={classes.items}>
+        <Link href='/' className={classes.item_link}>
+          <span>Inicio</span>
+        </Link>
         <Link href='/admin' className={classes.item_link}>
           <span>Pedidos</span>
         </Link>

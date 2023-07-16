@@ -96,7 +96,6 @@ export const CreateProduct: FC<CreateProductProps> = ({
 
   return (
     <Dialog
-      closable={false}
       draggable={false}
       resizable={false}
       visible={visible}
