@@ -5,7 +5,6 @@ import jwtDecoder from 'jwt-decode';
 import dayjs from 'dayjs';
 
 // uitls
-import { baseUrl } from '@/utils/fetch';
 import { axiosAuthServer } from '@/lib/axios';
 
 // type
@@ -95,9 +94,12 @@ export const authOptions: NextAuthOptions = {
     session: async ({ session, token }) => {
       session.at = token.at;
       const instance = axiosAuthServer(token.at!);
-      const { data } = await instance.get(`${baseUrl}/api/users/profile`);
+      const { data } = await instance.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/users/profile`
+      );
       session.user = {
         id: data.id,
+        name: data.name,
         role: data.role,
         email: data.email,
       };

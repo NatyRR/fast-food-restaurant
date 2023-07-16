@@ -1,17 +1,19 @@
-import Head from "next/head";
-import React from "react";
-import { FC } from "react";
-import classes from "@/styles/molecules/Layout/adminLayout.module.scss";
-import { AdminNavbar } from "../navbar/AdminNavbar";
+import Head from 'next/head';
+import React from 'react';
+import { FC } from 'react';
+import classes from '@/styles/molecules/Layout/adminLayout.module.scss';
+import { AdminNavbar } from '../navbar/AdminNavbar';
 
 interface adminLayoutprops {
+  page: string;
   title?: string;
   children: React.ReactNode;
 }
 
 export const AdminLayout: FC<adminLayoutprops> = ({
-  title = "Administrador",
+  page,
   children,
+  title = 'Administrador',
 }) => {
   return (
     <div className={classes.container}>
@@ -20,7 +22,7 @@ export const AdminLayout: FC<adminLayoutprops> = ({
       </Head>
 
       <div className={classes.content}>
-        <AdminNavbar />
+        <AdminNavbar page={page} />
         <main>{children}</main>
       </div>
     </div>
