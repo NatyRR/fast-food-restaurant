@@ -13,3 +13,9 @@ export const transferMethodEnum = Object.freeze({
   BANCOLOMBIA: "BANCOLOMBIA",
   BANCO_DE_VENEZUELA: "BANCO DE VENEZUELA",
 });
+
+export const adminStatusEnum = Object.freeze({
+  PEDIDO_POR_CANCELAR: "",
+  PEDIDO_CANCELADO: "",
+  ENTREGADO: "",
+});

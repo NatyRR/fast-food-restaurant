@@ -16,9 +16,7 @@ import axios from 'axios';
 export const authOptions: NextAuthOptions = {
   session: { maxAge: 60 * 60 }, // initial value in seconsd, logout on a half hour of inactivity
   secret: process.env.NEXTAUTH_SECRET, // secret for JWT
-  pages: {
-    signIn: '/inciar-sesion', // redirection url after signout
-  },
+  pages: { signIn: '/login' }, // redirection url after signout
 
   providers: [
     /**
@@ -28,8 +26,8 @@ export const authOptions: NextAuthOptions = {
       id: 'signin',
       name: 'signin',
       credentials: {
-        email: { label: 'Email', type: 'email', placeholder: 'Email' },
-        password: { label: 'Password', type: 'password' },
+        email: { type: 'email' },
+        password: { type: 'password' },
       },
 
       /**
@@ -43,7 +41,6 @@ export const authOptions: NextAuthOptions = {
           `${process.env.NEXT_PUBLIC_API_URL}/api/auth/sign-in`,
           { email: credentials?.email, password: credentials?.password }
         );
-        // console.log('🚀 ~ file: [...nextauth].ts:39 ~ authorize ~ data:', res);
         if (data.at) return data;
         else return null;
       },

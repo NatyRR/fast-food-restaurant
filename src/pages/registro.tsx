@@ -1,15 +1,15 @@
 // main tools
 import { getSession, signIn } from 'next-auth/react';
-import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 // components
-import { initialState } from '@/components/organisms/Menu/utils';
+import { initialStateRegistro } from '@/components/organisms/auth/utils';
 import { Button } from '@/components/atoms/Button';
 
 // bootstrap
-import { Container } from 'react-bootstrap';
+import { Container, Image } from 'react-bootstrap';
 
 // prime react
 import { InputText } from 'primereact/inputtext';
@@ -25,7 +25,7 @@ export default function Registro() {
   const { toast } = useApp();
   const { replace } = useRouter();
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState(initialState);
+  const [data, setData] = useState(initialStateRegistro);
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleChange = (e: any) => {
@@ -62,11 +62,7 @@ export default function Registro() {
         detail: res.error,
       });
       return;
-    } else {
-      const session = await getSession();
-      if (session?.user.role === 'admin') replace('/administrador');
-      else replace('/');
-    }
+    } else replace('/');
     setLoading(false);
   };
 
@@ -77,51 +73,54 @@ export default function Registro() {
 
   return (
     <Container className={classes.container} fluid>
+      <div className={classes.logo}>
+        <Image src='/asset/img/empanada3.jpg' alt='logo' />
+      </div>
       <form className={classes.form} onSubmit={handleSubmit}>
         <div className={classes.title}>
           <span>SIGN UP</span>
         </div>
         <div className={classes.name_lastName}>
           <InputText
-            className={classes.input_text}
             name='name'
             placeholder='Nombre'
             value={data.name}
             onChange={handleChange}
+            className={classes.input_text}
           />
 
           <InputText
-            className={classes.input_text}
-            placeholder='Apellido'
             name='lastName'
             value={data.lastName}
             onChange={handleChange}
+            placeholder='Apellido'
+            className={classes.input_text}
           />
         </div>
 
         <InputText
-          className={classes.input_email}
           type='email'
-          placeholder='Correo Electronico'
           name='email'
           value={data.email}
           onChange={handleChange}
+          placeholder='Correo Electronico'
+          className={classes.input_email}
         />
 
         <Password
-          className={classes.input_password}
           type='Password'
-          placeholder='Contraseña'
           name='password'
           value={data.password}
           onChange={handleChange}
+          placeholder='Contraseña'
+          className={classes.input_password}
         />
         <Password
-          className={classes.input_password}
           type='password'
-          placeholder='Confirmar Contraseña'
           name='password'
           value={confirmPassword}
+          placeholder='Confirmar Contraseña'
+          className={classes.input_password}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
 
@@ -132,23 +131,23 @@ export default function Registro() {
         )}
 
         <InputText
-          className={classes.input_number}
-          placeholder='Numero de telefono'
           name='phone'
           value={data.phone}
           onChange={handleChange}
+          placeholder='Numero de telefono'
+          className={classes.input_number}
         />
 
         <div className={classes.text_button}>
           <Link href={'#'} className={classes.link}>
             <span>
-              Clik here to <b>login</b>
+              Ya tienes cuenta ? Haz click <b>Aqui</b> para iniciar sesion
             </span>
           </Link>
 
           <div className={classes.button_link}>
-            <Button type='submit' variant='naranja'>
-              SUBMIT
+            <Button type='submit' variant='naranja' loading={loading}>
+              Registrarse
             </Button>
           </div>
         </div>

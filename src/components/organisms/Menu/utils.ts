@@ -142,13 +142,3 @@ export const accountInformation = [
     tipo_de_cuenta: 'Ahorro',
   },
 ];
-
-export const initialState = {
-  name: '',
-  email: '',
-  phone: '',
-  password: '',
-  lastName: '',
-};
-
-// cambio

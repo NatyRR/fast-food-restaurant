@@ -1,4 +1,6 @@
 // Main tools
+import { signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 //components
@@ -8,7 +10,12 @@ import { Button } from '@/components/atoms/Button';
 import { Container, Image } from 'react-bootstrap';
 
 //icons
-import { JournalText, BoxArrowInRight } from 'react-bootstrap-icons';
+import {
+  Person,
+  JournalText,
+  BoxArrowInLeft,
+  BoxArrowInRight,
+} from 'react-bootstrap-icons';
 
 //styles
 import classes from '@/styles/molecules/navbar/navbar.module.scss';
@@ -17,6 +24,10 @@ import classes from '@/styles/molecules/navbar/navbar.module.scss';
 import { FC } from 'react';
 
 export const Navbar: FC = () => {
+  const { replace } = useRouter();
+  const { data: session } = useSession();
+  const handleRoute = (route: string) => replace(route);
+
   return (
     <Container className={classes.container} fluid>
       <div className={classes.logo}>
@@ -29,14 +40,41 @@ export const Navbar: FC = () => {
           <span>Pedidos</span>
         </Link>
 
-        <Link href='#' className={classes.item_link}>
-          <BoxArrowInRight color='orange' size={25} />
-          <span>Login</span>
-        </Link>
+        {!session ? (
+          <>
+            <Link href='/login' className={classes.item_link}>
+              <BoxArrowInRight color='orange' size={25} />
+              <span>Login</span>
+            </Link>
 
-        <Link href='#'>
-          <Button variant='naranja'>Registrate</Button>
-        </Link>
+            <div>
+              <Button
+                variant='naranja'
+                onClick={() => handleRoute('/registro')}
+              >
+                Registrate
+              </Button>
+            </div>
+          </>
+        ) : (
+          <>
+            {session.user?.role === 'admin' && (
+              <Link href='/login' className={classes.item_link}>
+                <Person color='orange' size={25} />
+                <span>admin</span>
+              </Link>
+            )}
+
+            <div
+              role='button'
+              className={classes.item_link}
+              onClick={() => signOut({ redirect: true, callbackUrl: '/' })}
+            >
+              <BoxArrowInLeft color='orange' size={25} />
+              <span>Logout</span>
+            </div>
+          </>
+        )}
       </div>
     </Container>
   );
