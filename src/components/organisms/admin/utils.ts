@@ -4,7 +4,7 @@ export const order = {
   address: "francisco solorzano",
   user: {
     id: "1",
-    name: "francisco",
+    name: "ramus",
   },
   invoice: {
     id: "1",
@@ -31,28 +31,28 @@ export const order = {
 
 export const orders = [
   {
-    id: "1",
+    id: 1,
     status: "pending",
     address: "francisco solorzano",
     user: {
-      id: "1",
-      name: "francisco",
+      id: 1,
+      name: "ramus",
     },
     invoice: {
-      id: "1",
+      id: 121,
       total: 100,
       status: "paid",
     },
     products: [
       {
-        id: "1",
+        id: 1,
         name: "empanada",
         flaver: "pollo",
         price: 10,
         quantity: 10,
       },
       {
-        id: "2",
+        id: 2,
         name: "empanada",
         flaver: "carne",
         price: 10,
@@ -61,35 +61,109 @@ export const orders = [
     ],
   },
   {
-    id: "2",
+    id: 2,
     status: "competed",
     address: "centro de guayaquil",
     user: {
-      id: "2",
-      name: "jorge",
+      id: 2,
+      name: "cj",
     },
     invoice: {
-      id: "1",
+      id: 122,
       total: 100,
       status: "paid",
     },
     products: [
       {
-        id: "1",
+        id: 1,
         name: "empanada",
         flaver: "carne",
         price: 10,
         quantity: 2,
       },
       {
-        id: "2",
+        id: 2,
         name: "empanada",
         flaver: "pollo",
         price: 10,
         quantity: 2,
       },
       {
-        id: "3",
+        id: 3,
+        name: "refresco",
+        flaver: "coca cola",
+        price: 10,
+        quantity: 2,
+      },
+    ],
+  },
+  {
+    id: 3,
+    status: "competed",
+    address: "centro de guayaquil",
+    user: {
+      id: 3,
+      name: "nat",
+    },
+    invoice: {
+      id: 123,
+      total: 100,
+      status: "paid",
+    },
+    products: [
+      {
+        id: 1,
+        name: "empanada",
+        flaver: "carne",
+        price: 15,
+        quantity: 2,
+      },
+      {
+        id: 2,
+        name: "empanada",
+        flaver: "pollo",
+        price: 12,
+        quantity: 2,
+      },
+      {
+        id: 3,
+        name: "refresco",
+        flaver: "coca cola",
+        price: 10,
+        quantity: 2,
+      },
+    ],
+  },
+  {
+    id: 4,
+    status: "competed",
+    address: "centro de guayaquil",
+    user: {
+      id: 2,
+      name: "jorge",
+    },
+    invoice: {
+      id: 122,
+      total: 100,
+      status: "paid",
+    },
+    products: [
+      {
+        id: 1,
+        name: "empanada",
+        flaver: "carne",
+        price: 10,
+        quantity: 2,
+      },
+      {
+        id: 2,
+        name: "empanada",
+        flaver: "pollo",
+        price: 10,
+        quantity: 2,
+      },
+      {
+        id: 3,
         name: "refresco",
         flaver: "coca cola",
         price: 10,
