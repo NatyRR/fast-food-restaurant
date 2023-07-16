@@ -5,6 +5,7 @@
   border-radius: 15px;
   background-color: rgb(242, 255, 251);
   border: 2px solid rgb(190, 190, 190);
+  padding-block: 0.6rem;
 
   .id {
     gap: 0.5rem;
@@ -76,6 +77,11 @@
         margin-left: 0.3rem;
       }
     }
+    .dropdown_container {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 0.7rem;
+    }
   }
 
   .status_order {
@@ -87,8 +93,45 @@
       height: 100%;
       width: 100%;
 
-      .p-accordion-header {
+      .icon {
+        font-weight: 600;
+        color: rgb(163, 163, 163);
+        display: flex;
+        gap: 0.5rem;
       }
+
+      .orderList {
+        .product {
+          font-weight: 600;
+          color: rgb(163, 163, 163);
+          display: flex;
+          gap: 0.7rem;
+        }
+      }
+    }
+  }
+}
+
+.dropdown {
+  height: 2rem;
+
+  :global(.p-dropdown-label) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.acordion {
+  height: 3rem;
+  margin-top: 1rem;
+  margin-left: 0.6rem;
+
+  :global(.p-accordion-header) {
+    & > a {
+      padding: 0.5rem !important;
+      height: 100%;
+      background-color: rgb(255, 245, 231) !important   ;
     }
   }
 }
