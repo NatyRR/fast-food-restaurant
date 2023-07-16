@@ -1,24 +1,24 @@
 //components
-import { Button } from '@/components/atoms/Button';
+import { Button } from "@/components/atoms/Button";
 
 //boostrap
-import { Image } from 'react-bootstrap';
+import { Image } from "react-bootstrap";
 
 // icons
-import { StarFill } from 'react-bootstrap-icons';
+import { StarFill } from "react-bootstrap-icons";
 
 //reducer
-import { shoppingCartCases } from '@/context/shopping/reducer/case';
+import { shoppingCartCases } from "@/context/shopping/reducer/case";
 
 // hooks
-import { useShoppingCart } from '@/hooks/useShoppingCart';
-import { useApp } from '@/hooks/useApp';
+import { useShoppingCart } from "@/hooks/useShoppingCart";
+import { useApp } from "@/hooks/useApp";
 
 //styles
-import classes from '@/styles/organisms/Menu/card.module.scss';
+import classes from "@/styles/organisms/Menu/card.module.scss";
 
 //types
-import { FC } from 'react';
+import { FC } from "react";
 
 type CardProps = {
   name: string;
@@ -34,7 +34,7 @@ export const Card: FC<CardProps> = ({ img, name, price }) => {
     const { items } = shoppingCartState;
     const product = { img, name, price, quantity: 1 };
 
-    if (items.find((item) => item.name === name)) {
+    if (items?.find((item) => item.name === name)) {
       dispatch({
         payload: { itemName: name },
         type: shoppingCartCases.ADD_QUANTITY_TO_ITEM,
@@ -44,8 +44,8 @@ export const Card: FC<CardProps> = ({ img, name, price }) => {
         type: shoppingCartCases.UPDATE_AMOUNT,
       });
       toast()?.show({
-        severity: 'info',
-        detail: 'se agrego 1 mas al producto',
+        severity: "info",
+        detail: "se agrego 1 mas al producto",
       });
     } else {
       dispatch({
@@ -57,9 +57,9 @@ export const Card: FC<CardProps> = ({ img, name, price }) => {
         type: shoppingCartCases.UPDATE_AMOUNT,
       });
       toast()?.show({
-        severity: 'success',
-        summary: 'Producto agregado',
-        detail: 'Se agrego el producto al carrito',
+        severity: "success",
+        summary: "Producto agregado",
+        detail: "Se agrego el producto al carrito",
       });
     }
   };
@@ -68,7 +68,7 @@ export const Card: FC<CardProps> = ({ img, name, price }) => {
     <div className={classes.card_container}>
       <div className={classes.container_img}>
         <div className={classes.img}>
-          <Image src={img} alt='img referencial' />
+          <Image src={img} alt="img referencial" />
         </div>
       </div>
       <div className={classes.card}>
@@ -82,14 +82,14 @@ export const Card: FC<CardProps> = ({ img, name, price }) => {
             <div className={classes.review}>
               <span className={classes.label}>Review</span>
               <span className={classes.value}>
-                <StarFill size={20} color='red' /> {'  '}
+                <StarFill size={20} color="red" /> {"  "}
                 100
               </span>
             </div>
           </div>
 
           <div className={classes.button}>
-            <Button variant='naranja' onClick={addToCart}>
+            <Button variant="naranja" onClick={addToCart}>
               Add To Cart
             </Button>
           </div>

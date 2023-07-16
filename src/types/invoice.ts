@@ -1,5 +1,5 @@
 export type InvoiceDataType = {
-  id?: number;
-  total?: number;
-  status?: string;
+  id: number;
+  total: number;
+  status: string;
 };
