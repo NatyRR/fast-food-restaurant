@@ -35,23 +35,39 @@
       font-weight: 700;
       font-size: 3rem;
     }
+
+    @media (max-width: 768px) {
+      margin-top: 1rem;
+
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
   }
 
   .textos {
-    margin-top: 1.5rem;
+    margin-top: 1.4rem;
     padding-inline: 4rem;
     p {
       font-weight: 600;
       color: rgb(177, 147, 147);
     }
+
+    @media (max-width: 768px) {
+      padding-inline: 0;
+      margin-top: 0.6rem;
+    }
   }
 
   .button {
-    width: 70%;
-    margin-top: 1.9rem;
-    &:hover {
-      border: #fd8a1f;
-      background-color: #fd8a1f;
+    width: 60%;
+    margin-top: 1rem;
+    button {
+      &:hover {
+        border: #fd8a1f;
+        background-color: #fd8a1f;
+        border-radius: 20px;
+      }
     }
   }
   .imagen {

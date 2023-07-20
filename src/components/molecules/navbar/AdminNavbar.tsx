@@ -1,11 +1,11 @@
-import { FC } from 'react';
-import { Container } from 'react-bootstrap';
-import classes from '@/styles/molecules/navbar/navbarAdmin.module.scss';
-import { Button } from '@/components/atoms/Button';
+import { FC } from "react";
+import { Container } from "react-bootstrap";
+import classes from "@/styles/molecules/navbar/navbarAdmin.module.scss";
+import { Button } from "@/components/atoms/Button";
 // icons
-import { PersonCircle } from 'react-bootstrap-icons';
-import { useSession } from 'next-auth/react';
-import Link from 'next/link';
+import { PersonCircle } from "react-bootstrap-icons";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 type Props = {
   page: string;
@@ -21,17 +21,17 @@ export const AdminNavbar: FC<Props> = ({ page }) => {
       </div>
 
       <div className={classes.items}>
-        <Link href='/admin' className={classes.item_link}>
+        {/* <Link href='/admin' className={classes.item_link}>
           <span>Pedidos</span>
-        </Link>
-        <Link href='/admin/products' className={classes.item_link}>
+        </Link> */}
+        <Link href="/admin/products" className={classes.item_link}>
           <span>Productos</span>
         </Link>
 
         <div className={classes.button}>
-          <Button variant='naranja'>
-            <div className='d-flex justify-content-between'>
-              <PersonCircle size={20} />
+          <Button variant="naranja">
+            <div className="d-flex justify-content-between">
+              <PersonCircle size={18} />
               <span>{session?.user.name}</span>
             </div>
           </Button>

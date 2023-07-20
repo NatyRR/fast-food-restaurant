@@ -6,6 +6,16 @@
     margin-top: 2rem;
     padding-block: 2rem;
 
+    .title {
+      .h1 {
+        margin: 3rem;
+        font-size: 4rem;
+        font-weight: 600;
+        color: rgb(255, 130, 47);
+        text-align: center;
+      }
+    }
+
     .menu_buttons {
       width: 100%;
       display: flex;
@@ -14,6 +24,10 @@
 
       .wrapper_button {
         width: 10rem;
+      }
+
+      @media (max-width: 768px) {
+        padding-inline: 0.3rem;
       }
     }
   }

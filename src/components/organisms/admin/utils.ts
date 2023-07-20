@@ -4,6 +4,7 @@ export const order = {
   id: "1",
   status: "pending",
   address: "francisco solorzano",
+  createdAt: "14/05/23",
   user: {
     id: "1",
     name: "ramus",
@@ -36,9 +37,10 @@ export const orders = [
     id: 1,
     status: "pending",
     address: "francisco solorzano",
+    createdAt: "14/05/23",
     user: {
       id: 1,
-      name: "ramus",
+      name: "Ramus",
     },
     invoice: {
       id: 121,
@@ -66,9 +68,10 @@ export const orders = [
     id: 2,
     status: "competed",
     address: "centro de guayaquil",
+    createdAt: "14/05/23",
     user: {
       id: 2,
-      name: "cj",
+      name: "Cj",
     },
     invoice: {
       id: 122,
@@ -103,9 +106,10 @@ export const orders = [
     id: 3,
     status: "competed",
     address: "centro de guayaquil",
+    createdAt: "14/05/23",
     user: {
       id: 3,
-      name: "nat",
+      name: "Nat",
     },
     invoice: {
       id: 123,
@@ -140,9 +144,10 @@ export const orders = [
     id: 4,
     status: "competed",
     address: "centro de guayaquil",
+    createdAt: "14/05/23",
     user: {
       id: 2,
-      name: "jorge",
+      name: "Jorge",
     },
     invoice: {
       id: 122,
