@@ -1,22 +1,22 @@
 // main tools
-import { useState } from "react";
+import { useState } from 'react';
 
 //components
-import { Button } from "@/components/atoms/Button";
-import { Extras } from "./Extras";
-import { Food } from "./Food";
+import { Button } from '@/components/atoms/Button';
+import { Extras } from './Extras';
+import { Food } from './Food';
 
 //Boostrap
-import { Container } from "react-bootstrap";
+import { Container } from 'react-bootstrap';
 
 // hooks
-import { useShoppingCart } from "@/hooks/useShoppingCart";
+import { useShoppingCart } from '@/hooks/useShoppingCart';
 
 //styles
-import classes from "@/styles/organisms/Menu/menu.module.scss";
+import classes from '@/styles/organisms/Menu/menu.module.scss';
 
 //types
-import { FC } from "react";
+import { FC } from 'react';
 
 export const Menu: FC = () => {
   const [extraStep, setExtraStep] = useState(false);
@@ -25,29 +25,37 @@ export const Menu: FC = () => {
   return (
     <>
       <div className={classes.div_padre}>
+        <div className='pt-5 text-center'>
+          <h1 className={classes.title}>MENÚ</h1>
+          <p className={classes.text}>
+            {!extraStep
+              ? ' Selecciona los productos que iran en tu pedido'
+              : 'Selecciona los extras que acompañaran a tu pedido'}
+          </p>
+        </div>
         <Container className={classes.container}>
           {!extraStep ? <Food /> : <Extras />}
 
           <div className={classes.menu_buttons}>
             {extraStep && (
               <div className={classes.wrapper_button}>
-                <Button variant="naranja" onClick={() => setExtraStep(false)}>
+                <Button variant='naranja' onClick={() => setExtraStep(false)}>
                   Atras
                 </Button>
               </div>
             )}
 
             {!extraStep ? (
-              <div className="w-100 d-flex justify-content-end">
+              <div className='w-100 d-flex justify-content-end'>
                 <div className={classes.wrapper_button}>
-                  <Button variant="naranja" onClick={() => setExtraStep(true)}>
+                  <Button variant='naranja' onClick={() => setExtraStep(true)}>
                     Siguiente
                   </Button>
                 </div>
               </div>
             ) : (
               <div className={classes.wrapper_button} onClick={handleShowForm}>
-                <Button variant="naranja">Pagar</Button>
+                <Button variant='naranja'>Pagar</Button>
               </div>
             )}
           </div>

@@ -1,32 +1,32 @@
-import React, { useState } from "react";
-import { FC } from "react";
-import classes from "@/styles/molecules/card-admin/cardAdmin.module.scss";
-import { Checkbox } from "primereact/checkbox";
-import { Accordion, AccordionTab } from "primereact/accordion";
+import React, { useState } from 'react';
+import { FC } from 'react';
+import classes from '@/styles/molecules/card-admin/cardAdmin.module.scss';
+import { Checkbox } from 'primereact/checkbox';
+import { Accordion, AccordionTab } from 'primereact/accordion';
 import {
   Cart4,
   CashCoin,
   HourglassSplit,
   Person,
   Truck,
-} from "react-bootstrap-icons";
-import { UserDataType } from "../../types/user";
-import { ProductDataType } from "../../types/shoppingCart";
-import { InvoiceDataType } from "../../types/invoice";
+} from 'react-bootstrap-icons';
+import { UserDataType } from '../../types/user';
+import { ProductDataType } from '../../types/shoppingCart';
+import { InvoiceDataType } from '../../types/invoice';
 import {
   order,
   orders,
   statusInvoiceOptions,
   statusOrder,
-} from "../organisms/admin/utils";
-import { Dropdown } from "primereact/dropdown";
+} from '../organisms/admin/utils';
+import { Dropdown } from 'primereact/dropdown';
 
 type CardAdminProps = {
   id: number;
   status: string;
+  address: string;
   userName: UserDataType;
   invoice: InvoiceDataType;
-  address: string;
   products: ProductDataType[];
 };
 
@@ -39,7 +39,7 @@ export const CardAdmin: FC<CardAdminProps> = ({
   products,
 }) => {
   const [checked, setChecked] = useState(false);
-  const [orderStatus, setOrderStatus] = useState("");
+  const [orderStatus, setOrderStatus] = useState(status);
   const [StatuInvoice, setStatusInvoice] = useState(invoice.status);
   return (
     <div className={classes.card}>
@@ -50,10 +50,10 @@ export const CardAdmin: FC<CardAdminProps> = ({
             <span>{id}</span>
             <Dropdown
               value={StatuInvoice}
-              onChange={(e) => setStatusInvoice(e.value)}
-              options={statusInvoiceOptions}
-              placeholder="Estatus pago"
+              placeholder='Estatus pago'
               className={classes.dropdown}
+              options={statusInvoiceOptions}
+              onChange={(e) => setStatusInvoice(e.value)}
             />
           </div>
 
@@ -81,17 +81,17 @@ export const CardAdmin: FC<CardAdminProps> = ({
           <HourglassSplit />
           <Dropdown
             value={orderStatus}
-            onChange={(e) => setOrderStatus(e.value)}
             options={statusOrder}
-            placeholder="Estatus"
+            placeholder='Estatus'
             className={classes.dropdown}
+            onChange={(e) => setOrderStatus(e.value)}
           />
         </div>
       </div>
       <div className={classes.status_order}>
         <div>
-          <Accordion activeIndex={0} className={classes.acordion}>
-            <AccordionTab header="Estatus de orden">
+          <Accordion className={classes.acordion}>
+            <AccordionTab header='Estatus de orden'>
               <div className={classes.icon}>
                 <Cart4 />
                 <span>Pedido:</span>
@@ -100,7 +100,7 @@ export const CardAdmin: FC<CardAdminProps> = ({
                 {products.map((item, index) => (
                   <div className={classes.product} key={id}>
                     <span>{item.name}</span>
-                    <span>{item.flaver}</span>
+                    <span>{item.flavor}</span>
                     <span>{item.quantity}</span>
                   </div>
                 ))}

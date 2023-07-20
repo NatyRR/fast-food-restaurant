@@ -40,6 +40,7 @@ export default function Login() {
     setLoading(true);
 
     const res = await signIn('signin', { ...data, redirect: false });
+    console.log('🚀 ~ file: login.tsx:43 ~ handleSubmit ~ res:', res);
     if (res?.error) {
       setLoading(false);
       toast()?.show({

@@ -61,7 +61,7 @@ export const Navbar: FC = () => {
             {session.user?.role === 'admin' && (
               <Link href='/login' className={classes.item_link}>
                 <Person color='orange' size={25} />
-                <span>admin</span>
+                <span>Panel de administrador</span>
               </Link>
             )}
 

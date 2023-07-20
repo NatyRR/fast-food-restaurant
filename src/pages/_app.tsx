@@ -1,14 +1,15 @@
 // main tools
 import type { AppProps } from 'next/app';
 
-// provider
+// providers
+
 import { AppContextProvider } from '@/context/app/provider';
+import { SessionProvider } from 'next-auth/react';
 
 // styles
 import '@/styles/globals.scss';
 import { NextPage } from 'next';
 import { Session } from 'next-auth';
-import { SessionProvider } from 'next-auth/react';
 
 type MyAppProps = {
   session: Session;
