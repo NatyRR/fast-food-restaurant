@@ -26,6 +26,9 @@ export const Menu: FC = () => {
     <>
       <div className={classes.div_padre}>
         <Container className={classes.container}>
+          <div className={classes.title}>
+            <h1 className={classes.h1}>Menú</h1>
+          </div>
           {!extraStep ? <Food /> : <Extras />}
 
           <div className={classes.menu_buttons}>

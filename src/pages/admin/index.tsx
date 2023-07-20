@@ -1,14 +1,14 @@
-import React from 'react';
-import { AdminLayout } from '../../components/molecules/Layout/AdminLayout';
-import { Col, Container, Row } from 'react-bootstrap';
-import { CardAdmin } from '@/components/atoms/CardAdmin';
-import classes from '@/styles/organisms/administrador/admin.module.scss';
-import { FilterAdmin } from '@/components/atoms/FilterAdmin';
-import { orders } from '@/components/organisms/admin/utils';
+import React from "react";
+import { AdminLayout } from "../../components/molecules/Layout/AdminLayout";
+import { Col, Container, Row } from "react-bootstrap";
+import { CardAdmin } from "@/components/atoms/CardAdmin";
+import classes from "@/styles/organisms/administrador/admin.module.scss";
+import { FilterAdmin } from "@/components/atoms/FilterAdmin";
+import { orders } from "@/components/organisms/admin/utils";
 
 export default function administrador() {
   return (
-    <AdminLayout page='Pedidos'>
+    <AdminLayout page="Pedidos">
       <Container>
         <FilterAdmin />
         <Row className={classes.card_container}>
@@ -17,6 +17,7 @@ export default function administrador() {
               <CardAdmin
                 id={item.id}
                 status={item.status}
+                createdAt={item.createdAt}
                 userName={item.user}
                 invoice={item.invoice}
                 address={item.address}
