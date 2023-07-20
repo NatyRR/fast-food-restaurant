@@ -1,83 +1,31 @@
-@import "/src/styles/atoms/button.module.scss";
+@import '/src/styles/atoms/button.module.scss';
 
 .container {
   height: 12vh;
   background-color: #ffffff;
   display: flex;
 
-  .desktop {
-    width: 100%;
-    height: 12vh;
-    display: flex;
-    justify-content: space-between;
+  .logo {
+    height: 100%;
+    margin-left: 2rem;
+    margin-top: 1rem;
 
-    @media (max-width: 768px) {
-      display: none;
-    }
-
-    .logo {
+    img {
       height: 100%;
-      margin-left: 2rem;
-      margin-top: 1rem;
-
-      img {
-        height: 100%;
-      }
-    }
-
-    .items {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-
-      gap: 3rem;
-      margin-top: 2.9rem;
-      margin-right: 3rem;
-      .item_link {
-        text-decoration: none;
-        color: #fd8a1f;
-      }
     }
   }
 
-  .menuMobile {
-    display: none;
-    @media (max-width: 985px) {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-    }
-
-    .toggle {
-      border: 3px solid #ffb617;
-      background: #ffb617;
-    }
-  }
-}
-
-.sidebar {
-  max-width: 15rem;
-
-  &_body {
-    gap: 2rem;
+  .items {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-
-    .items_mobile {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-
-      .item_link {
-        text-decoration: none;
-        display: flex;
-        gap: 0.5rem;
-      }
-
-      span {
-        font-size: 0.8rem;
-        color: rgb(116, 115, 115);
-      }
+    justify-content: flex-end;
+    // background-color: aqua;
+    gap: 3rem;
+    margin-top: 2.9rem;
+    margin-right: 3rem;
+    .item_link {
+      text-decoration: none;
+      color: #fd8a1f;
     }
   }
 }

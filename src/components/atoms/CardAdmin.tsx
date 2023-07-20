@@ -4,7 +4,6 @@ import classes from "@/styles/molecules/card-admin/cardAdmin.module.scss";
 import { Checkbox } from "primereact/checkbox";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import {
-  CalendarEvent,
   Cart4,
   CashCoin,
   HourglassSplit,
@@ -25,7 +24,6 @@ import { Dropdown } from "primereact/dropdown";
 type CardAdminProps = {
   id: number;
   status: string;
-  createdAt: string;
   userName: UserDataType;
   invoice: InvoiceDataType;
   address: string;
@@ -35,12 +33,12 @@ type CardAdminProps = {
 export const CardAdmin: FC<CardAdminProps> = ({
   id,
   status,
-  createdAt,
   userName,
   invoice,
   address,
   products,
 }) => {
+  const [checked, setChecked] = useState(false);
   const [orderStatus, setOrderStatus] = useState("");
   const [StatuInvoice, setStatusInvoice] = useState(invoice.status);
   return (
@@ -69,10 +67,6 @@ export const CardAdmin: FC<CardAdminProps> = ({
         <div className={classes.user}>
           <Person />
           <span>{userName.name}</span>
-        </div>
-        <div className={classes.created_at}>
-          <CalendarEvent />
-          <span>{createdAt}</span>
         </div>
         <div className={classes.total}>
           <CashCoin />
