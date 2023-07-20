@@ -16,6 +16,7 @@ export async function middleware(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
   const decoded: decodedToken | null = token && jwtDecoder(token.at!);
+  // console.log('🚀 ~ file: middleware.ts:19 ~ middleware ~ decoded:', decoded);
 
   if (!token) {
     if (pathname === '/administrador') {
@@ -24,7 +25,7 @@ export async function middleware(req: NextRequest) {
   }
 
   if (decoded?.role !== 'admin') {
-    if (pathname === '/administrador') {
+    if (pathname.startsWith('/admin')) {
       return NextResponse.redirect(new URL('/', req.url));
     }
   }

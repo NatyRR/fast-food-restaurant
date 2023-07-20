@@ -1,30 +1,30 @@
-import { InvoiceStatusEnum, orderStatusEnum } from "@/common/enums";
+import { InvoiceStatusEnum, orderStatusEnum } from '@/common/enums';
 
 export const order = {
-  id: "1",
-  status: "pending",
-  address: "francisco solorzano",
+  id: '1',
+  status: 'pending',
+  address: 'francisco solorzano',
   user: {
-    id: "1",
-    name: "ramus",
+    id: '1',
+    name: 'ramus',
   },
   invoice: {
-    id: "1",
+    id: '1',
     total: 100,
-    status: "paid",
+    status: 'paid',
   },
   products: [
     {
-      id: "1",
-      name: "empanada de",
-      flaver: "pollo",
+      id: '1',
+      name: 'empanada de',
+      flaver: 'pollo',
       price: 10,
       quantity: 10,
     },
     {
-      id: "2",
-      name: "empanada de",
-      flaver: "carne",
+      id: '2',
+      name: 'empanada de',
+      flaver: 'carne',
       price: 10,
       quantity: 10,
     },
@@ -34,29 +34,29 @@ export const order = {
 export const orders = [
   {
     id: 1,
-    status: "pending",
-    address: "francisco solorzano",
+    status: 'pending',
+    address: 'francisco solorzano',
     user: {
       id: 1,
-      name: "ramus",
+      name: 'ramus',
     },
     invoice: {
       id: 121,
       total: 100,
-      status: "paid",
+      status: 'paid',
     },
     products: [
       {
         id: 1,
-        name: "-Empanada de",
-        flaver: "pollo",
+        name: '-Empanada de',
+        flaver: 'pollo',
         price: 10,
         quantity: 10,
       },
       {
         id: 2,
-        name: "-Empanada de",
-        flaver: "carne",
+        name: '-Empanada de',
+        flaver: 'carne',
         price: 10,
         quantity: 10,
       },
@@ -64,36 +64,36 @@ export const orders = [
   },
   {
     id: 2,
-    status: "competed",
-    address: "centro de guayaquil",
+    status: 'competed',
+    address: 'centro de guayaquil',
     user: {
       id: 2,
-      name: "cj",
+      name: 'cj',
     },
     invoice: {
       id: 122,
       total: 100,
-      status: "paid",
+      status: 'paid',
     },
     products: [
       {
         id: 1,
-        name: "-Empanada de",
-        flaver: "carne",
+        name: '-Empanada de',
+        flaver: 'carne',
         price: 10,
         quantity: 2,
       },
       {
         id: 2,
-        name: "-Empanada de",
-        flaver: "pollo",
+        name: '-Empanada de',
+        flaver: 'pollo',
         price: 10,
         quantity: 2,
       },
       {
         id: 3,
-        name: "-Refresco",
-        flaver: "coca cola",
+        name: '-Refresco',
+        flaver: 'coca cola',
         price: 10,
         quantity: 2,
       },
@@ -101,36 +101,36 @@ export const orders = [
   },
   {
     id: 3,
-    status: "competed",
-    address: "centro de guayaquil",
+    status: 'competed',
+    address: 'centro de guayaquil',
     user: {
       id: 3,
-      name: "nat",
+      name: 'nat',
     },
     invoice: {
       id: 123,
       total: 100,
-      status: "paid",
+      status: 'paid',
     },
     products: [
       {
         id: 1,
-        name: "-Empanada de",
-        flaver: "carne",
+        name: '-Empanada de',
+        flaver: 'carne',
         price: 15,
         quantity: 2,
       },
       {
         id: 2,
-        name: "-Empanada de",
-        flaver: "pollo",
+        name: '-Empanada de',
+        flaver: 'pollo',
         price: 12,
         quantity: 2,
       },
       {
         id: 3,
-        name: "-Refresco",
-        flaver: "coca cola",
+        name: '-Refresco',
+        flaver: 'coca cola',
         price: 10,
         quantity: 2,
       },
@@ -138,36 +138,36 @@ export const orders = [
   },
   {
     id: 4,
-    status: "competed",
-    address: "centro de guayaquil",
+    status: 'competed',
+    address: 'centro de guayaquil',
     user: {
       id: 2,
-      name: "jorge",
+      name: 'jorge',
     },
     invoice: {
       id: 122,
       total: 100,
-      status: "paid",
+      status: 'paid',
     },
     products: [
       {
         id: 1,
-        name: "-Empanada de",
-        flaver: "carne",
+        name: '-Empanada de',
+        flaver: 'carne',
         price: 10,
         quantity: 2,
       },
       {
         id: 2,
-        name: "-Empanada de",
-        flaver: "pollo",
+        name: '-Empanada de',
+        flaver: 'pollo',
         price: 10,
         quantity: 2,
       },
       {
         id: 3,
-        name: "-Refresco",
-        flaver: "coca cola",
+        name: '-Refresco',
+        flaver: 'coca cola',
         price: 10,
         quantity: 2,
       },
@@ -175,32 +175,45 @@ export const orders = [
   },
 ];
 
+export const products = [
+  {
+    id: 1,
+    stock: 100,
+    price: 2000,
+    flavor: 'pino',
+    name: 'empanada',
+    status: 'active',
+    description: 'una sabrosa empanada de pino',
+    img: 'https://www.defer.cl/img/p/1/6/3/163-thickbox_default.jpg',
+  },
+];
+
 export const statusOrder = [
   {
-    label: "Pendiente",
+    label: 'Pendiente',
     value: orderStatusEnum.PENDING,
   },
   {
-    label: "En progreso",
+    label: 'En progreso',
     value: orderStatusEnum.IN_PROGRESS,
   },
   {
-    label: "Entregado",
+    label: 'Entregado',
     value: orderStatusEnum.DONE,
   },
 ];
 
 export const statusInvoiceOptions = [
   {
-    label: "Pendiente",
+    label: 'Pendiente',
     value: InvoiceStatusEnum.PENDING,
   },
   {
-    label: "Pago",
+    label: 'Pago',
     value: InvoiceStatusEnum.PAID,
   },
   {
-    label: "Cancelado",
+    label: 'Cancelado',
     value: InvoiceStatusEnum.CANCELLED,
   },
 ];
