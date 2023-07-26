@@ -75,7 +75,7 @@ export const OrdersCard: FC<CardAdminProps> = ({
                 {products.map((item, index) => (
                   <div className={classes.product} key={id}>
                     <span>{item.name}</span>
-                    <span>{item.flaver}</span>
+                    <span>{item.flavor}</span>
                     <span>{item.quantity}</span>
                   </div>
                 ))}
