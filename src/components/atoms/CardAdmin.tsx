@@ -46,6 +46,9 @@ export const CardAdmin: FC<CardAdminProps> = ({
           <div className={classes.order_id}>
             <span>#</span>
             <span>{id}</span>
+          </div>
+
+          <div className={classes.status}>
             <Dropdown
               value={StatuInvoice}
               placeholder='Estatus pago'
@@ -53,10 +56,6 @@ export const CardAdmin: FC<CardAdminProps> = ({
               options={statusInvoiceOptions}
               onChange={(e) => setStatusInvoice(e.value)}
             />
-          </div>
-
-          <div className={classes.status}>
-            <div className={classes.check}></div>
           </div>
         </div>
         <div className={classes.line}></div>
@@ -87,25 +86,23 @@ export const CardAdmin: FC<CardAdminProps> = ({
         </div>
       </div>
       <div className={classes.status_order}>
-        <div>
-          <Accordion activeIndex={0} className={classes.acordion}>
-            <AccordionTab header='Pedido'>
-              <div className={classes.icon}>
-                <Cart4 />
-                <span>Lista</span>
-              </div>
-              <div className={classes.orderList}>
-                {products.map((item) => (
-                  <div className={classes.product} key={id}>
-                    <span>{item.name}</span>
-                    <span>{item.flavor}</span>
-                    <span>{item.quantity}</span>
-                  </div>
-                ))}
-              </div>
-            </AccordionTab>
-          </Accordion>
-        </div>
+        <Accordion className={classes.acordion}>
+          <AccordionTab header='Pedido'>
+            <div className={classes.icon}>
+              <Cart4 />
+              <span>Lista</span>
+            </div>
+            <div className={classes.orderList}>
+              {products.map((item) => (
+                <div className={classes.product} key={id}>
+                  <span>{item.name}</span>
+                  <span>{item.flavor}</span>
+                  <span>{item.quantity}</span>
+                </div>
+              ))}
+            </div>
+          </AccordionTab>
+        </Accordion>
       </div>
     </div>
   );
