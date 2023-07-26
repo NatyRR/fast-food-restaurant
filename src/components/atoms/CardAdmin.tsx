@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FC } from 'react';
 import classes from '@/styles/molecules/card-admin/cardAdmin.module.scss';
-
+import { Checkbox } from 'primereact/checkbox';
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import {
   Cart4,
@@ -15,6 +15,7 @@ import { ProductDataType } from '../../types/shoppingCart';
 import { InvoiceDataType } from '../../types/invoice';
 import {
   order,
+  orders,
   statusInvoiceOptions,
   statusOrder,
 } from '../organisms/admin/utils';
@@ -37,6 +38,7 @@ export const CardAdmin: FC<CardAdminProps> = ({
   address,
   products,
 }) => {
+  const [checked, setChecked] = useState(false);
   const [orderStatus, setOrderStatus] = useState(status);
   const [StatuInvoice, setStatusInvoice] = useState(invoice.status);
   return (
@@ -44,7 +46,7 @@ export const CardAdmin: FC<CardAdminProps> = ({
       <div className={classes.id}>
         <div className={classes.header}>
           <div className={classes.order_id}>
-            <span>#</span>
+            <span>#:</span>
             <span>{id}</span>
             <Dropdown
               value={StatuInvoice}
@@ -88,14 +90,14 @@ export const CardAdmin: FC<CardAdminProps> = ({
       </div>
       <div className={classes.status_order}>
         <div>
-          <Accordion activeIndex={0} className={classes.acordion}>
-            <AccordionTab header='Pedido'>
+          <Accordion className={classes.acordion}>
+            <AccordionTab header='Estatus de orden'>
               <div className={classes.icon}>
                 <Cart4 />
-                <span>Lista</span>
+                <span>Pedido:</span>
               </div>
               <div className={classes.orderList}>
-                {products.map((item) => (
+                {products.map((item, index) => (
                   <div className={classes.product} key={id}>
                     <span>{item.name}</span>
                     <span>{item.flavor}</span>
