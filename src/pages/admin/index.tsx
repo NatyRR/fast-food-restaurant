@@ -12,26 +12,22 @@ import { SocketContextProvider } from '@/context/io/provdier';
 import { GetServerSidePropsContext, NextPage } from 'next';
 import { GetSSPropsType } from '@/types';
 
-const Administrador: NextPage<GetSSPropsType<typeof getServerSideProps>> = ({
-  token,
-}) => {
+const Administrador: NextPage<
+  GetSSPropsType<typeof getServerSideProps>
+> = () => {
   return (
-    <SocketContextProvider token={token!}>
-      <AdminLayout page='Pedidos'>
-        <AdminPage />
-      </AdminLayout>
-    </SocketContextProvider>
+    <AdminLayout page='Pedidos'>
+      <AdminPage />
+    </AdminLayout>
+    // <SocketContextProvider>
+    // </SocketContextProvider>
   );
 };
 
 export default Administrador;
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  const session = await getServerAuthSession(ctx);
-
   return {
-    props: {
-      token: session?.at,
-    },
+    props: {},
   };
 };

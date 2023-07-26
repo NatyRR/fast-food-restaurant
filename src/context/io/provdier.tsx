@@ -7,28 +7,19 @@ import { FC, ReactNode } from 'react';
 import { getSession } from 'next-auth/react';
 
 type SocketContextProviderProps = {
-  token: string;
   children: ReactNode;
 };
 
 export const SocketContextProvider: FC<SocketContextProviderProps> = ({
-  token,
   children,
 }) => {
-  const context = { socket: getSocket(token) };
+  const context = { socket: getSocket() };
 
-  function getSocket(token: string) {
+  function getSocket() {
     let socket;
-
     if (!socket) {
-      console.log(process.env.NEXT_PUBLIC_API_URL, token);
-      socket = io(process.env.NEXT_PUBLIC_API_URL!, {
-        extraHeaders: {
-          authorization: `${token}`,
-        },
-      });
+      socket = io('https://fast-food-api-production.up.railway.app');
     }
-
     return socket;
   }
 

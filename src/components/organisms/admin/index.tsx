@@ -19,32 +19,32 @@ import { Socket } from 'socket.io-client';
 
 export const AdminPage = () => {
   const { socket } = useIo();
-  const [orderList, setorderList] = useState<OrderDataType[]>();
+  // const [orderList, setorderList] = useState<OrderDataType[]>();
 
-  console.log('🚀 ~ file: index.tsx:24 ~ AdminPage ~ socketState:', socket);
+  // console.log('🚀 ~ file: index.tsx:24 ~ AdminPage ~ socketState:', socket);
 
-  useEffect(() => {
-    if (socket) {
-      socket.on('initialOrders', (data: any) => {
-        if (data) {
-          console.log('🚀 ~ file: index.tsx:39 ~ socket.on ~ data:', data);
-          setorderList(data);
-        }
-      });
+  // useEffect(() => {
+  //   if (socket) {
+  //     socket.on('initialOrders', (data: any) => {
+  //       if (data) {
+  //         console.log('🚀 ~ file: index.tsx:39 ~ socket.on ~ data:', data);
+  //         setorderList(data);
+  //       }
+  //     });
 
-      socket.on('newOrder', (data: any) => {
-        if (data) {
-          console.log('🚀 ~ file: index.tsx:46 ~ socket.on ~ data:', data);
-          setorderList(data);
-        }
-      });
+  //     socket.on('newOrder', (data: any) => {
+  //       if (data) {
+  //         console.log('🚀 ~ file: index.tsx:46 ~ socket.on ~ data:', data);
+  //         setorderList(data);
+  //       }
+  //     });
 
-      return () => {
-        socket.off('initialOrders', () => console.log('initialOrders off'));
-        socket.off('newOrder', () => console.log('newOrder off'));
-      };
-    }
-  }, [socket]);
+  //     return () => {
+  //       socket.off('initialOrders', () => console.log('initialOrders off'));
+  //       socket.off('newOrder', () => console.log('newOrder off'));
+  //     };
+  //   }
+  // }, [socket]);
 
   return (
     <Container>
