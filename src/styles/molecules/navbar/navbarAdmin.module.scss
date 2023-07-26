@@ -4,6 +4,7 @@
   display: flex;
   border-radius: 50px;
   align-items: center;
+  padding-inline: 2rem;
   background-color: #fcfaf6;
   border: 2px solid rgb(255, 162, 95);
   justify-content: space-between;
@@ -14,29 +15,24 @@
   }
 
   .title {
-    margin-left: 1rem;
     text-transform: uppercase;
     color: rgb(253, 161, 24);
     h1 {
+      margin: 0;
       font-weight: 700;
       font-size: 2rem !important;
     }
 
     @media (max-width: 768px) {
-      margin-left: 0;
-
       h1 {
-        margin-left: 0.5rem;
-        font-size: 1.3rem !important;
-        margin-top: 0.3rem;
+        font-size: 1rem !important;
       }
     }
   }
   .items {
     gap: 3rem;
-    width: 100%;
+
     display: flex;
-    margin-right: 3rem;
     align-items: center;
     justify-content: flex-end;
 
@@ -51,7 +47,6 @@
 
     .button {
       width: 8rem;
-      margin-right: 1rem;
       @media (max-width: 768px) {
         width: 50%;
         margin-right: 0;

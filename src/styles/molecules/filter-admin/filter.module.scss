@@ -9,6 +9,10 @@
   justify-content: center;
   background-color: rgb(231, 231, 231);
 
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
   button {
     width: 30%;
     height: 75%;
