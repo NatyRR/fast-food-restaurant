@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FC } from "react";
 import classes from "@/styles/molecules/card-admin/cardAdmin.module.scss";
-import { Checkbox } from "primereact/checkbox";
+
 import { Accordion, AccordionTab } from "primereact/accordion";
 import {
   CalendarEvent,
@@ -97,10 +97,10 @@ export const CardAdmin: FC<CardAdminProps> = ({
       <div className={classes.status_order}>
         <div>
           <Accordion activeIndex={0} className={classes.acordion}>
-            <AccordionTab header="Estatus de orden">
+            <AccordionTab header="Pedido">
               <div className={classes.icon}>
                 <Cart4 />
-                <span>Pedido:</span>
+                <span>Lista</span>
               </div>
               <div className={classes.orderList}>
                 {products.map((item, index) => (

@@ -34,8 +34,8 @@ export const order = {
 
 export const orders = [
   {
-    id: 1,
-    status: "pending",
+    id: 4,
+    status: "pendiente",
     address: "francisco solorzano",
     createdAt: "14/05/23",
     user: {
@@ -50,14 +50,14 @@ export const orders = [
     products: [
       {
         id: 1,
-        name: "-Empanada de",
+        name: "- Empanada de",
         flaver: "pollo",
         price: 10,
         quantity: 10,
       },
       {
         id: 2,
-        name: "-Empanada de",
+        name: "- Empanada de",
         flaver: "carne",
         price: 10,
         quantity: 10,
@@ -65,8 +65,8 @@ export const orders = [
     ],
   },
   {
-    id: 2,
-    status: "competed",
+    id: 3,
+    status: "entregado",
     address: "centro de guayaquil",
     createdAt: "14/05/23",
     user: {
@@ -81,21 +81,21 @@ export const orders = [
     products: [
       {
         id: 1,
-        name: "-Empanada de",
+        name: "- Empanada de",
         flaver: "carne",
         price: 10,
         quantity: 2,
       },
       {
         id: 2,
-        name: "-Empanada de",
+        name: "- Empanada de",
         flaver: "pollo",
         price: 10,
         quantity: 2,
       },
       {
         id: 3,
-        name: "-Refresco",
+        name: "- Refresco",
         flaver: "coca cola",
         price: 10,
         quantity: 2,
@@ -103,8 +103,8 @@ export const orders = [
     ],
   },
   {
-    id: 3,
-    status: "competed",
+    id: 2,
+    status: "entregado",
     address: "centro de guayaquil",
     createdAt: "14/05/23",
     user: {
@@ -119,21 +119,21 @@ export const orders = [
     products: [
       {
         id: 1,
-        name: "-Empanada de",
+        name: "- Empanada de",
         flaver: "carne",
         price: 15,
         quantity: 2,
       },
       {
         id: 2,
-        name: "-Empanada de",
+        name: "- Empanada de",
         flaver: "pollo",
         price: 12,
         quantity: 2,
       },
       {
         id: 3,
-        name: "-Refresco",
+        name: "- Refresco",
         flaver: "coca cola",
         price: 10,
         quantity: 2,
@@ -141,8 +141,8 @@ export const orders = [
     ],
   },
   {
-    id: 4,
-    status: "competed",
+    id: 1,
+    status: "entregado",
     address: "centro de guayaquil",
     createdAt: "14/05/23",
     user: {
@@ -157,21 +157,21 @@ export const orders = [
     products: [
       {
         id: 1,
-        name: "-Empanada de",
+        name: "- Empanada de",
         flaver: "carne",
         price: 10,
         quantity: 2,
       },
       {
         id: 2,
-        name: "-Empanada de",
+        name: "- Empanada de",
         flaver: "pollo",
         price: 10,
         quantity: 2,
       },
       {
         id: 3,
-        name: "-Refresco",
+        name: "- Refresco",
         flaver: "coca cola",
         price: 10,
         quantity: 2,

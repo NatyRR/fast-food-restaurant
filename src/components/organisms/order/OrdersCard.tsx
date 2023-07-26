@@ -15,6 +15,7 @@ import { order } from "../admin/utils";
 
 type CardAdminProps = {
   id: number;
+  status: string;
   createdAt: string;
   userName: UserDataType;
   address: string;
@@ -23,6 +24,7 @@ type CardAdminProps = {
 
 export const OrdersCard: FC<CardAdminProps> = ({
   id,
+  status,
   createdAt,
   userName,
   address,
@@ -33,12 +35,12 @@ export const OrdersCard: FC<CardAdminProps> = ({
       <div className={classes.id}>
         <div className={classes.header}>
           <div className={classes.order_id}>
-            <span>#:</span>
+            <span>#</span>
             <span>{id}</span>
           </div>
 
           <div className={classes.status}>
-            <div className={classes.check}></div>
+            <span className={classes.check}>{status}</span>
           </div>
         </div>
         <div className={classes.line}></div>
@@ -64,10 +66,10 @@ export const OrdersCard: FC<CardAdminProps> = ({
       <div className={classes.status_order}>
         <div>
           <Accordion activeIndex={0} className={classes.acordion}>
-            <AccordionTab header="Estatus de orden">
+            <AccordionTab header={`Pedido`}>
               <div className={classes.icon}>
                 <Cart4 />
-                <span>Pedido:</span>
+                <span>Lista</span>
               </div>
               <div className={classes.orderList}>
                 {products.map((item, index) => (

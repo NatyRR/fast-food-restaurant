@@ -14,6 +14,7 @@ export default function Orders() {
           <Col xs={12} md={3} key={item.id} className={classes.col}>
             <OrdersCard
               id={item.id}
+              status={item.status}
               createdAt={item.createdAt}
               userName={item.user}
               address={item.address}
