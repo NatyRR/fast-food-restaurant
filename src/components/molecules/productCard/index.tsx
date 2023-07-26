@@ -1,29 +1,29 @@
 // components
-import { Button } from "@/components/atoms/Button";
+import { Button } from '@/components/atoms/Button';
 
 // bootstrap
-import { Col, Image, Row } from "react-bootstrap";
+import { Col, Image, Row } from 'react-bootstrap';
 
 // icons
-import { Trash } from "react-bootstrap-icons";
+import { Trash } from 'react-bootstrap-icons';
 
 // hooks
-import { useShoppingCart } from "@/hooks/useShoppingCart";
+import { useShoppingCart } from '@/hooks/useShoppingCart';
 
 // reducer
-import { shoppingCartCases } from "@/context/shopping/reducer/case";
+import { shoppingCartCases } from '@/context/shopping/reducer/case';
 
 // styles
-import classes from "@/styles/molecules/productCard/styles.module.scss";
+import classes from '@/styles/molecules/productCard/styles.module.scss';
 
 // types
-import { ProductDataType } from "@/types/shoppingCart";
-import React, { FC } from "react";
+import { ProductDataType } from '@/types/shoppingCart';
+import React, { FC } from 'react';
 
 interface ProductCard extends ProductDataType {}
 
 export const ProductCard: FC<ProductDataType> = ({
-  img,
+  image,
   name,
   price,
   quantity,
@@ -62,7 +62,7 @@ export const ProductCard: FC<ProductDataType> = ({
   return (
     <Row className={classes.container}>
       <Col xs={2} className={classes.img}>
-        <Image src={img} alt="" />
+        <Image src={image} alt='' />
       </Col>
       <Col xs={6}>
         <div className={classes.infoProduct}>
@@ -81,7 +81,7 @@ export const ProductCard: FC<ProductDataType> = ({
           ) : (
             <Button
               onClick={remove}
-              variant="naranja"
+              variant='naranja'
               className={classes.button_control}
             >
               -
@@ -91,7 +91,7 @@ export const ProductCard: FC<ProductDataType> = ({
           <span>{quantity}</span>
           <Button
             onClick={add}
-            variant="naranja"
+            variant='naranja'
             className={classes.button_control}
           >
             +

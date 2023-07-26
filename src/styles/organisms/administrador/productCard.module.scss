@@ -57,19 +57,17 @@
     }
 
     .content {
-      gap: 2rem;
+      gap: 1rem;
       height: 100%;
       display: flex;
       align-items: center;
       flex-direction: column;
-      justify-content: center;
-      padding-bottom: 5rem;
 
       .description {
         padding-inline: 1rem;
         color: #ffba7f;
         font-weight: 400;
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-style: italic;
         text-align: center;
         filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.9));
@@ -114,12 +112,17 @@
         }
       }
 
-      .button {
-        width: 80%;
+      .options {
+        gap: 2rem;
         display: flex;
-        button {
-          border-radius: 9px;
-        }
+      }
+
+      .wrapper_buttons {
+        width: 100%;
+        display: flex;
+        // margin-top: 1.5rem;
+        padding-inline: 1rem;
+        justify-content: space-between;
       }
     }
   }

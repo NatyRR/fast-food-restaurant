@@ -1,32 +1,37 @@
-import React from "react";
-import { AdminLayout } from "../../components/molecules/Layout/AdminLayout";
-import { Col, Container, Row } from "react-bootstrap";
-import { CardAdmin } from "@/components/atoms/CardAdmin";
-import classes from "@/styles/organisms/administrador/admin.module.scss";
-import { FilterAdmin } from "@/components/atoms/FilterAdmin";
-import { orders } from "@/components/organisms/admin/utils";
+// main tools
+import { getServerAuthSession } from '../api/auth/[...nextauth]';
 
-export default function administrador() {
+// components
+import { AdminLayout } from '@/components/molecules/Layout/AdminLayout';
+import { AdminPage } from '@/components/organisms/admin';
+
+// provider
+import { SocketContextProvider } from '@/context/io/provdier';
+
+// types
+import { GetServerSidePropsContext, NextPage } from 'next';
+import { GetSSPropsType } from '@/types';
+
+const Administrador: NextPage<GetSSPropsType<typeof getServerSideProps>> = ({
+  token,
+}) => {
   return (
-    <AdminLayout page="Pedidos">
-      <Container>
-        <FilterAdmin />
-        <Row className={classes.card_container}>
-          {orders.map((item) => (
-            <Col xs={12} md={3} key={item.id} className={classes.col}>
-              <CardAdmin
-                id={item.id}
-                status={item.status}
-                createdAt={item.createdAt}
-                userName={item.user}
-                invoice={item.invoice}
-                address={item.address}
-                products={item.products}
-              />
-            </Col>
-          ))}
-        </Row>
-      </Container>
-    </AdminLayout>
+    <SocketContextProvider token={token!}>
+      <AdminLayout page='Pedidos'>
+        <AdminPage />
+      </AdminLayout>
+    </SocketContextProvider>
   );
-}
+};
+
+export default Administrador;
+
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  const session = await getServerAuthSession(ctx);
+
+  return {
+    props: {
+      token: session?.at,
+    },
+  };
+};

@@ -1,22 +1,60 @@
 // components
-import { Card } from "../Card";
+import { Card } from '../Card';
 
 // bootstrap
-import { Col, Row } from "react-bootstrap";
+import { Col, Row } from 'react-bootstrap';
 
-// framerMotion
-import { motion } from "framer-motion";
+// framer motion
+import { motion } from 'framer-motion';
 
 // utils
-import { listCards } from "../utils";
+import { endpoints } from '@/utils/fetch';
+
+// lib
+import axios from 'axios';
+
+// hooks
+import { useApp } from '@/hooks/useApp';
 
 // styles
-import classes from "@/styles/organisms/Menu/food/food.module.scss";
+import classes from '@/styles/organisms/Menu/extrass/extras.module.scss';
 
 // types
-import { FC } from "react";
+import { ProductDataType } from '@/types/shoppingCart';
+import { FC, useEffect, useState } from 'react';
 
 export const Food: FC = () => {
+  const { toast } = useApp();
+  const [foodList, setFoodList] = useState<ProductDataType[]>();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data, status } = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}${endpoints.getActiveProducts}`
+        );
+        if (status === 200) {
+          const dataFilter = data.filter(
+            (item: ProductDataType) => item.principal
+          );
+          setFoodList(dataFilter);
+        } else {
+          toast()?.show({
+            summary: 'Error',
+            severity: 'error',
+            detail: `No se pudo cargar los productos ${data.message}`,
+          });
+        }
+      } catch (error) {
+        toast()?.show({
+          summary: 'Error',
+          severity: 'error',
+          detail: `No se pudo cargar los productos ${String(error)}`,
+        });
+      }
+    })();
+  }, [toast]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -24,9 +62,9 @@ export const Food: FC = () => {
       transition={{ duration: 1 }}
     >
       <Row className={classes.row}>
-        {listCards.map((item, index) => (
-          <Col xs={12} md={3} key={item.sabor} className={classes.col}>
-            <Card img={item.imagen} name={item.sabor} price={item.price} />
+        {foodList?.map((item, index) => (
+          <Col xs={12} md={4} key={item.id} className={classes.col}>
+            <Card {...item} />
           </Col>
         ))}
       </Row>

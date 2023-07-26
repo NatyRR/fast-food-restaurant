@@ -4,7 +4,6 @@ import classes from "@/styles/molecules/card-admin/cardAdmin.module.scss";
 
 import { Accordion, AccordionTab } from "primereact/accordion";
 import {
-  CalendarEvent,
   Cart4,
   CashCoin,
   HourglassSplit,
@@ -25,23 +24,22 @@ import { Dropdown } from "primereact/dropdown";
 type CardAdminProps = {
   id: number;
   status: string;
-  createdAt: string;
+  address: string;
   userName: UserDataType;
   invoice: InvoiceDataType;
-  address: string;
   products: ProductDataType[];
 };
 
 export const CardAdmin: FC<CardAdminProps> = ({
   id,
   status,
-  createdAt,
   userName,
   invoice,
   address,
   products,
 }) => {
-  const [orderStatus, setOrderStatus] = useState("");
+  const [checked, setChecked] = useState(false);
+  const [orderStatus, setOrderStatus] = useState(status);
   const [StatuInvoice, setStatusInvoice] = useState(invoice.status);
   return (
     <div className={classes.card}>
@@ -52,10 +50,10 @@ export const CardAdmin: FC<CardAdminProps> = ({
             <span>{id}</span>
             <Dropdown
               value={StatuInvoice}
-              onChange={(e) => setStatusInvoice(e.value)}
-              options={statusInvoiceOptions}
               placeholder="Estatus pago"
               className={classes.dropdown}
+              options={statusInvoiceOptions}
+              onChange={(e) => setStatusInvoice(e.value)}
             />
           </div>
 
@@ -70,10 +68,6 @@ export const CardAdmin: FC<CardAdminProps> = ({
           <Person />
           <span>{userName.name}</span>
         </div>
-        <div className={classes.created_at}>
-          <CalendarEvent />
-          <span>{createdAt}</span>
-        </div>
         <div className={classes.total}>
           <CashCoin />
           <span>{order.invoice.total}</span>
@@ -87,10 +81,10 @@ export const CardAdmin: FC<CardAdminProps> = ({
           <HourglassSplit />
           <Dropdown
             value={orderStatus}
-            onChange={(e) => setOrderStatus(e.value)}
             options={statusOrder}
             placeholder="Estatus"
             className={classes.dropdown}
+            onChange={(e) => setOrderStatus(e.value)}
           />
         </div>
       </div>
@@ -106,7 +100,7 @@ export const CardAdmin: FC<CardAdminProps> = ({
                 {products.map((item, index) => (
                   <div className={classes.product} key={id}>
                     <span>{item.name}</span>
-                    <span>{item.flaver}</span>
+                    <span>{item.flavor}</span>
                     <span>{item.quantity}</span>
                   </div>
                 ))}

@@ -4,7 +4,6 @@ export const order = {
   id: "1",
   status: "pending",
   address: "francisco solorzano",
-  createdAt: "14/05/23",
   user: {
     id: "1",
     name: "ramus",
@@ -40,7 +39,7 @@ export const orders = [
     createdAt: "14/05/23",
     user: {
       id: 1,
-      name: "Ramus",
+      name: "ramus",
     },
     invoice: {
       id: 121,
@@ -71,7 +70,7 @@ export const orders = [
     createdAt: "14/05/23",
     user: {
       id: 2,
-      name: "Cj",
+      name: "cj",
     },
     invoice: {
       id: 122,
@@ -109,7 +108,7 @@ export const orders = [
     createdAt: "14/05/23",
     user: {
       id: 3,
-      name: "Nat",
+      name: "nat",
     },
     invoice: {
       id: 123,
@@ -147,7 +146,7 @@ export const orders = [
     createdAt: "14/05/23",
     user: {
       id: 2,
-      name: "Jorge",
+      name: "jorge",
     },
     invoice: {
       id: 122,
@@ -177,6 +176,19 @@ export const orders = [
         quantity: 2,
       },
     ],
+  },
+];
+
+export const products = [
+  {
+    id: 1,
+    stock: 100,
+    price: 2000,
+    flavor: "pino",
+    name: "empanada",
+    status: "active",
+    description: "una sabrosa empanada de pino",
+    img: "https://www.defer.cl/img/p/1/6/3/163-thickbox_default.jpg",
   },
 ];
 

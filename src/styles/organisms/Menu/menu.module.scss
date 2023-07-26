@@ -1,20 +1,22 @@
 .div_padre {
   background-color: rgb(255, 254, 241);
 
+  .title {
+    font-size: 4rem;
+    color: #fd8a1f;
+    font-weight: 600;
+  }
+
+  .text {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #000;
+  }
+
   .container {
     height: 100%;
     margin-top: 2rem;
     padding-block: 2rem;
-
-    .title {
-      .h1 {
-        margin: 3rem;
-        font-size: 4rem;
-        font-weight: 600;
-        color: rgb(255, 130, 47);
-        text-align: center;
-      }
-    }
 
     .menu_buttons {
       width: 100%;
@@ -24,10 +26,6 @@
 
       .wrapper_button {
         width: 10rem;
-      }
-
-      @media (max-width: 768px) {
-        padding-inline: 0.3rem;
       }
     }
   }

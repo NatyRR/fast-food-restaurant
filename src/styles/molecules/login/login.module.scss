@@ -11,11 +11,6 @@
     width: 10%;
     display: flex;
 
-    @media (max-width: 768px) {
-      height: 30%;
-      width: 40%;
-    }
-
     img {
       height: 100%;
       width: 100%;
@@ -33,10 +28,6 @@
     flex-direction: column;
     justify-content: center;
     background-color: rgb(240, 221, 203);
-
-    @media (max-width: 768px) {
-      width: 80%;
-    }
 
     .input_email {
       width: 100%;

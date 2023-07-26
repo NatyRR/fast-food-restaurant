@@ -1,21 +1,21 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 
 // compoents
-import { ProductCard } from "@/components/molecules/productCard";
-import { Button } from "@/components/atoms/Button";
+import { ProductCard } from '@/components/molecules/productCard';
+import { Button } from '@/components/atoms/Button';
 
 // bootstrap
-import { Col, Row } from "react-bootstrap";
+import { Col, Row } from 'react-bootstrap';
 
 // icons
-import { CaretRight } from "react-bootstrap-icons";
+import { CaretRight } from 'react-bootstrap-icons';
 
 // prime react
-import { Sidebar } from "primereact/sidebar";
+import { Sidebar } from 'primereact/sidebar';
 
 // styles
-import classes from "@/styles/molecules/shoppingCart/styles.module.scss";
-import { ShoppingCartDataType } from "@/types/shoppingCart";
+import classes from '@/styles/molecules/shoppingCart/styles.module.scss';
+import { ShoppingCartDataType } from '@/types/shoppingCart';
 
 type ShoppingCartProps = {
   show: boolean;
@@ -33,7 +33,7 @@ export const ShoppingCard: FC<ShoppingCartProps> = ({
   return (
     <Sidebar
       visible={show}
-      position="right"
+      position='right'
       onHide={handleShow}
       showCloseIcon={false}
       className={classes.sidebar}
@@ -46,26 +46,26 @@ export const ShoppingCard: FC<ShoppingCartProps> = ({
           </div>
         </div>
 
-        <Row className="gap-3">
+        <Row className='gap-3'>
           {shoppingCartState.items?.map((item, index) => (
             <Col xs={12} key={index}>
               <ProductCard
-                img={item.img}
                 name={item.name}
+                image={item.image}
                 price={item.price}
                 quantity={item.quantity}
               />
             </Col>
           ))}
           <Col xs={12}>
-            <div className="w-100 d-flex gap-2 align-items-center ">
-              <div className="d-flex gap-2 ">
+            <div className='w-100 d-flex gap-2 align-items-center '>
+              <div className='d-flex gap-2 '>
                 <span>Total: </span>
                 <span>{shoppingCartState.amount}$</span>
               </div>
-              <Row className="w-100 justify-content-end">
+              <Row className='w-100 justify-content-end'>
                 <Col xs={6}>
-                  <Button variant="naranja" onClick={handleShowForm}>
+                  <Button variant='naranja' onClick={handleShowForm}>
                     Pagar
                   </Button>
                 </Col>

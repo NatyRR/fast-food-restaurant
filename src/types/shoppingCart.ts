@@ -5,9 +5,14 @@ export type ShoppingCartDataType = {
 
 export type ProductDataType = {
   id?: number;
-  flaver?: string;
   name?: string;
+  image?: string;
   price?: number;
-  img?: string;
+  status?: string;
+  flavor?: string;
   quantity?: number;
+  createdAt?: string;
+  updatedAt?: string;
+  principal?: boolean;
+  description?: string;
 };

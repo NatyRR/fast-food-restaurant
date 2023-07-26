@@ -25,14 +25,17 @@ import classes from '@/styles/organisms/administrador/products.module.scss';
 // type
 import { InputNumberChangeEvent } from 'primereact/inputnumber';
 import { FC, ChangeEvent } from 'react';
+import { SetStateType } from '@/types';
 
 type CreateProductProps = {
   visible: boolean;
   handleVisible: () => void;
+  refetch: SetStateType<boolean>;
 };
 
 export const CreateProduct: FC<CreateProductProps> = ({
   visible,
+  refetch,
   handleVisible,
 }) => {
   const { toast } = useApp();
@@ -81,6 +84,7 @@ export const CreateProduct: FC<CreateProductProps> = ({
           summary: 'Success',
           detail: 'Producto creado correctamente',
         });
+        refetch(true);
         handleVisible();
       }
     } catch (error) {
@@ -90,13 +94,12 @@ export const CreateProduct: FC<CreateProductProps> = ({
         detail: String(error),
       });
     } finally {
-      setLoading;
+      setLoading(false);
     }
   };
 
   return (
     <Dialog
-      closable={false}
       draggable={false}
       resizable={false}
       visible={visible}
@@ -177,8 +180,9 @@ export const CreateProduct: FC<CreateProductProps> = ({
             <Col xs={12}>
               <Button
                 type='submit'
-                className={classes.button}
                 variant='naranja'
+                loading={loading}
+                className={classes.button}
               >
                 Agregar producto
               </Button>
