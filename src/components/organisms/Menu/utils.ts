@@ -122,23 +122,25 @@ export const transferMethodOptions = [
   },
 ];
 
-export const accountInformation = [
-  {
-    cuenta: transferMethodEnum.DAVI_PLATA,
-    numero_de_cuenta: 55555555556,
-    cedula: 1111000,
-    tipo_de_cuenta: 'Ahorro',
-  },
-  {
-    cuenta: transferMethodEnum.BANCO_DE_VENEZUELA,
-    numero_de_cuenta: 22222222228,
-    cedula: 3444476,
-    tipo_de_cuenta: 'corriente',
-  },
-  {
-    cuenta: transferMethodEnum.BANCOLOMBIA,
-    numero_de_cuenta: 88888888124,
-    cedula: 4444442,
-    tipo_de_cuenta: 'Ahorro',
-  },
-];
+// export const accountInformation = [
+//   {
+//     cuenta: 'Pago Movil',
+//     numero_de_cuenta: 55555555556,
+//     cedula: 1111000,
+//     tipo_de_cuenta: 'Ahorro',
+//   },
+
+//   {
+//     cuenta: transferMethodEnum.BANCOLOMBIA,
+//     numero_de_cuenta: 88888888124,
+//     cedula: 4444442,
+//     tipo_de_cuenta: 'Ahorro',
+//   },
+// ];
+export const accountInformation = {
+  cuenta: transferMethodEnum.BANCO_DE_VENEZUELA,
+  numero_de_cuenta: 22222222228,
+  tipo_de_cuenta: 'corriente',
+  cedula: 3444476,
+  telefono: 123456789,
+};

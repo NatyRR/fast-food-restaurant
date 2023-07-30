@@ -24,45 +24,17 @@ type AdminPageProps = {
 
 export const AdminPage: FC<AdminPageProps> = ({ data }) => {
   const [orderList, setorderList] = useState<OrderDataType[] | null>(data);
-  const [filterData, setFilterData] =
-    useState<keyof typeof InvoiceStatusEnum>();
-  console.log('🚀 ~ file: index.tsx:26 ~ orderList:', orderList);
+  const [filterData, setFilterData] = useState<
+    keyof typeof InvoiceStatusEnum | undefined
+  >('pending');
 
   const handleFilter = (filter: keyof typeof InvoiceStatusEnum) => {
     if (filterData === filter) setFilterData(undefined);
     else setFilterData(filter);
   };
 
-  //! implementacion de SOCKETS para el componente... no funciona
-  // const { socket } = useIo();
-
-  // console.log('🚀 ~ file: index.tsx:24 ~ AdminPage ~ socketState:', socket);
-
-  // useEffect(() => {
-  //   if (socket) {
-  //     socket.on('initialOrders', (data: any) => {
-  //       if (data) {
-  //         console.log('🚀 ~ file: index.tsx:39 ~ socket.on ~ data:', data);
-  //         setorderList(data);
-  //       }
-  //     });
-
-  //     socket.on('newOrder', (data: any) => {
-  //       if (data) {
-  //         console.log('🚀 ~ file: index.tsx:46 ~ socket.on ~ data:', data);
-  //         setorderList(data);
-  //       }
-  //     });
-
-  //     return () => {
-  //       socket.off('initialOrders', () => console.log('initialOrders off'));
-  //       socket.off('newOrder', () => console.log('newOrder off'));
-  //     };
-  //   }
-  // }, [socket]);
-
   return (
-    <Container>
+    <Container className='py-5'>
       <FilterAdmin handleFilter={handleFilter} />
       <Row className={classes.card_container}>
         {!data ? (
@@ -71,7 +43,7 @@ export const AdminPage: FC<AdminPageProps> = ({ data }) => {
           </div>
         ) : orderList?.length ? (
           orderList
-            ?.filter((i) => i.invoice?.status === filterData)
+            ?.filter((i) => i.Invoice?.status === filterData)
             .map((item) => (
               <Col xs={12} md={3} key={item.id} className={classes.col}>
                 <CardAdmin {...item} />

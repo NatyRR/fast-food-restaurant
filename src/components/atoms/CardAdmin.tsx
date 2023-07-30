@@ -9,7 +9,9 @@ import {
   HourglassSplit,
   Person,
   Truck,
+  ClipboardCheck,
 } from 'react-bootstrap-icons';
+
 import { UserDataType } from '../../types/user';
 import { ProductDataType } from '../../types/shoppingCart';
 import { InvoiceDataType } from '../../types/invoice';
@@ -19,26 +21,59 @@ import {
   statusOrder,
 } from '../organisms/admin/utils';
 import { Dropdown } from 'primereact/dropdown';
+import { Button, Col, Row, Spinner } from 'react-bootstrap';
+import axiosClient from '@/lib/axios';
+import { endpoints } from '@/utils/fetch';
+import { useApp } from '@/hooks/useApp';
+import { OrderDataType } from '@/types/order';
 
-type CardAdminProps = {
-  id?: number;
-  status?: string;
-  address?: string;
-  User?: UserDataType;
-  Invoice?: InvoiceDataType;
-  OrderItems?: ProductDataType[];
-};
+interface CardAdminProps extends OrderDataType {}
 
 export const CardAdmin: FC<CardAdminProps> = ({
   id,
-  status,
   User,
+  status,
   Invoice,
   address,
   OrderItems,
 }) => {
+  const { toast } = useApp();
+  const [loading, setLoading] = useState(false);
   const [orderStatus, setOrderStatus] = useState(status);
   const [statuInvoice, setStatusInvoice] = useState(Invoice?.status);
+
+  const updateOrder = async () => {
+    const body = {
+      id: id,
+      orderStatus,
+      invoiceStatus: statuInvoice,
+    };
+
+    setLoading(true);
+    const instance = axiosClient();
+    const { data, status } = await instance.post(
+      `${process.env.NEXT_PUBLIC_API_URL}${endpoints.updateInvoiceOrderStatus}`,
+      body
+    );
+
+    if (status > 200) {
+      setLoading(false);
+      toast()?.show({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Ocurrio un error al actualizar la orden',
+      });
+      return;
+    }
+
+    toast()?.show({
+      severity: 'success',
+      summary: 'Orden procesada',
+      detail: 'Su orden ha sido actualizada con exito',
+    });
+    setLoading(false);
+  };
+
   return (
     <div className={classes.card}>
       <div className={classes.id}>
@@ -104,6 +139,25 @@ export const CardAdmin: FC<CardAdminProps> = ({
           </AccordionTab>
         </Accordion>
       </div>
+
+      <Row className='my-2 justify-content-center px-3'>
+        <Col xs={12} md={8}>
+          <Button
+            onClick={updateOrder}
+            className={classes.button_naranja}
+            disabled={
+              (orderStatus === status && statuInvoice === Invoice?.status) ||
+              loading
+            }
+          >
+            {loading ? (
+              <Spinner animation='border' variant='light' />
+            ) : (
+              'Actualizar datos'
+            )}
+          </Button>
+        </Col>
+      </Row>
     </div>
   );
 };

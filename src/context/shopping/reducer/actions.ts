@@ -1,5 +1,5 @@
 // types
-import { ProductDataType, ShoppingCartDataType } from "@/types/shoppingCart";
+import { ProductDataType, ShoppingCartDataType } from '@/types/shoppingCart';
 
 export const shoppingCartActions = {
   addToCart: (
@@ -12,13 +12,10 @@ export const shoppingCartActions = {
     return newState;
   },
 
-  addQuantityToItem: (
-    state: ShoppingCartDataType,
-    payload: { itemName: string }
-  ) => {
-    const { itemName } = payload;
+  addQuantityToItem: (state: ShoppingCartDataType, payload: { id: number }) => {
+    const { id } = payload;
     const newState = { ...state, items: [...state.items!] };
-    const itemIndex = newState.items.findIndex((i) => i.name === itemName);
+    const itemIndex = newState.items.findIndex((i) => i.id === id);
     newState.items[itemIndex] = {
       ...newState.items[itemIndex],
       quantity: newState.items[itemIndex].quantity! + 1,
@@ -28,11 +25,11 @@ export const shoppingCartActions = {
 
   removeQuantityToItem: (
     state: ShoppingCartDataType,
-    payload: { itemName: string }
+    payload: { id: number }
   ) => {
-    const { itemName } = payload;
+    const { id } = payload;
     const newState = { ...state, items: [...state.items!] };
-    const itemIndex = newState.items.findIndex((i) => i.name === itemName);
+    const itemIndex = newState.items.findIndex((i) => i.id === id);
     newState.items[itemIndex] = {
       ...newState.items[itemIndex],
       quantity: newState.items[itemIndex].quantity! - 1,
@@ -40,13 +37,10 @@ export const shoppingCartActions = {
     return newState;
   },
 
-  removeFromCart: (
-    state: ShoppingCartDataType,
-    payload: { itemName: string }
-  ) => {
-    const { itemName } = payload;
+  removeFromCart: (state: ShoppingCartDataType, payload: { id: number }) => {
+    const { id } = payload;
     const newState = { ...state, items: [...state.items!] };
-    const itemIndex = newState.items.findIndex((i) => i.name === itemName);
+    const itemIndex = newState.items.findIndex((i) => i.id === id);
     newState.items.splice(itemIndex, 1);
     return newState;
   },
