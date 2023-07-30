@@ -1,14 +1,14 @@
-import { CardAdmin } from '@/components/atoms/CardAdmin';
-import { orders } from '@/components/organisms/admin/utils';
-import { Col, Container, Row } from 'react-bootstrap';
-import classes from '@/styles/organisms/orders/orderCard.module.scss';
-import { Navbar } from '@/components/molecules/navbar';
-import { OrdersCard } from '@/components/organisms/order/OrdersCard';
-import { GetServerSidePropsContext, NextPage } from 'next';
-import axiosClient from '@/lib/axios';
-import { endpoints } from '@/utils/fetch';
-import { GetSSPropsType } from '@/types';
-import { useState } from 'react';
+import { CardAdmin } from "@/components/atoms/CardAdmin";
+import { orders } from "@/components/organisms/admin/utils";
+import { Col, Container, Row } from "react-bootstrap";
+import classes from "@/styles/organisms/orders/orderCard.module.scss";
+import { Navbar } from "@/components/molecules/navbar";
+import { OrdersCard } from "@/components/organisms/order/OrdersCard";
+import { GetServerSidePropsContext, NextPage } from "next";
+import axiosClient from "@/lib/axios";
+import { endpoints } from "@/utils/fetch";
+import { GetSSPropsType } from "@/types";
+import { useState } from "react";
 
 const Orders: NextPage<GetSSPropsType<typeof getServerSideProps>> = ({
   data,
@@ -21,7 +21,7 @@ const Orders: NextPage<GetSSPropsType<typeof getServerSideProps>> = ({
         <Navbar />
         <Row className={classes.card_container}>
           {orderList.map((item: any) => (
-            <Col xs={12} md={3} key={item.id} className='mb-5'>
+            <Col xs={12} md={3} key={item.id} className="mb-5">
               <OrdersCard {...item} />
             </Col>
           ))}
