@@ -32,8 +32,13 @@ import { paymentMethodEnum } from '@/common/enums';
 import classes from '@/styles/organisms/Menu/dialog.module.scss';
 
 //types
+import { ShoppingCartDataType } from '@/types/shoppingCart';
 import { DropdownChangeEvent } from 'primereact/dropdown';
 import { FC } from 'react';
+import { useSession } from 'next-auth/react';
+import axiosClient from '@/lib/axios';
+import { endpoints } from '@/utils/fetch';
+import { useApp } from '@/hooks/useApp';
 
 type DialogProps = {
   showModalForm: boolean;
@@ -41,7 +46,10 @@ type DialogProps = {
 };
 
 export const FormPay: FC<DialogProps> = ({ showModalForm, handleShow }) => {
+  const { toast } = useApp();
   const [ref, setRef] = useState('');
+  const { data: session } = useSession();
+  const [address, setAddress] = useState('');
   const [delivery, setDelivery] = useState(false);
   const [transferMethod, setTransferMethod] = useState('');
   const [effectiveMethod, setEffectiveMethod] = useState('');
@@ -49,6 +57,37 @@ export const FormPay: FC<DialogProps> = ({ showModalForm, handleShow }) => {
   const [moneyCash, setMoneyCash] = useState<number | null>(null);
   const [selectedMethod, setSelectedMethod] =
     useState<keyof typeof paymentMethodEnum>();
+
+  const handleSubmit = async () => {
+    const instance = axiosClient();
+    const body = {
+      address: address,
+      userId: session?.user.id,
+      products: shoppingCartState.items,
+      paymentMethodId: selectedMethod,
+    };
+
+    const { data, status } = await instance.post(
+      `${process.env.NEXT_PUBLIC_API_URL}${endpoints.createOrder}`,
+      body
+    );
+
+    if (status !== 201) {
+      toast()?.show({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Ocurrio un error al procesar la orden',
+      });
+      return;
+    }
+
+    toast()?.show({
+      severity: 'success',
+      summary: 'Orden procesada',
+      detail: 'Su orden ha sido procesada con exito',
+    });
+    return;
+  };
 
   return (
     <Dialog
@@ -88,9 +127,9 @@ export const FormPay: FC<DialogProps> = ({ showModalForm, handleShow }) => {
             <div className={classes.delivery_information}>
               <label>Ingresa una direccion de entrega</label>
               <InputText
-                value={ref}
+                value={address}
                 className='w-100'
-                onChange={(e) => setRef(e.target.value)}
+                onChange={(e) => setAddress(e.target.value)}
               />
             </div>
           )}

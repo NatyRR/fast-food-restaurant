@@ -60,7 +60,7 @@ export const ShoppingCartContextProvider: FC<
         shoppingCartState={shoppingCartState}
       />
 
-      <FormPay showModalForm={showModalForm} handleShow={handleShowForm} />
+      <FormPay handleShow={handleShowForm} showModalForm={showModalForm} />
     </ShoppingContext.Provider>
   );
 };

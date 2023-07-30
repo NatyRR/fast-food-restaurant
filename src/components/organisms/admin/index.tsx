@@ -1,5 +1,5 @@
 // main tools
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 // components
 import { FilterAdmin } from '@/components/atoms/FilterAdmin';
@@ -16,10 +16,25 @@ import { useIo } from '@/hooks/useIo';
 import classes from '@/styles/organisms/administrador/admin.module.scss';
 import { OrderDataType } from '@/types/order';
 import { Socket } from 'socket.io-client';
+import { InvoiceStatusEnum } from '../../../common/enums';
 
-export const AdminPage = () => {
-  const { socket } = useIo();
-  // const [orderList, setorderList] = useState<OrderDataType[]>();
+type AdminPageProps = {
+  data: OrderDataType[] | null;
+};
+
+export const AdminPage: FC<AdminPageProps> = ({ data }) => {
+  const [orderList, setorderList] = useState<OrderDataType[] | null>(data);
+  const [filterData, setFilterData] =
+    useState<keyof typeof InvoiceStatusEnum>();
+  console.log('🚀 ~ file: index.tsx:26 ~ orderList:', orderList);
+
+  const handleFilter = (filter: keyof typeof InvoiceStatusEnum) => {
+    if (filterData === filter) setFilterData(undefined);
+    else setFilterData(filter);
+  };
+
+  //! implementacion de SOCKETS para el componente... no funciona
+  // const { socket } = useIo();
 
   // console.log('🚀 ~ file: index.tsx:24 ~ AdminPage ~ socketState:', socket);
 
@@ -48,20 +63,25 @@ export const AdminPage = () => {
 
   return (
     <Container>
-      <FilterAdmin />
+      <FilterAdmin handleFilter={handleFilter} />
       <Row className={classes.card_container}>
-        {orders.map((item) => (
-          <Col xs={12} md={3} key={item.id} className={classes.col}>
-            <CardAdmin
-              id={item.id}
-              status={item.status}
-              userName={item.user}
-              invoice={item.invoice}
-              address={item.address}
-              products={item.products}
-            />
-          </Col>
-        ))}
+        {!data ? (
+          <div className='text-center mt-5'>
+            <h1>Error al cargar pedidos</h1>
+          </div>
+        ) : orderList?.length ? (
+          orderList
+            ?.filter((i) => i.invoice?.status === filterData)
+            .map((item) => (
+              <Col xs={12} md={3} key={item.id} className={classes.col}>
+                <CardAdmin {...item} />
+              </Col>
+            ))
+        ) : (
+          <div className='text-center mt-5'>
+            <h1>No hay pedidos</h1>
+          </div>
+        )}
       </Row>
     </Container>
   );

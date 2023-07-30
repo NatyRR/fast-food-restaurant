@@ -1,7 +1,7 @@
 import { getServerAuthSession } from '@/pages/api/auth/[...nextauth]';
-import axios from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import { getSession } from 'next-auth/react';
+import axios from 'axios';
 
 const axiosClient = (ctx?: GetServerSidePropsContext) => {
   const instance = axios.create();
