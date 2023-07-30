@@ -4,6 +4,7 @@ export const endpoints = {
   createOrder: '/api/orders',
   signIn: '/api/auth/sign-in',
   signUp: '/api/auth/sign-up',
+  updateOrders: '/api/orders', //? /{id}
   getAllorders: '/api/orders',
   deleteProduct: '/api/products', //? /{id}
   updateProduct: '/api/products', //? /{id}
@@ -12,4 +13,7 @@ export const endpoints = {
   createProduct: '/api/products/create',
   toggleProduct: '/api/products/toggle', //? /{id}
   getActiveProducts: '/api/products/active',
+  getPaymenthMethods: '/api/payment-methods/all',
+  findOrderByUser: '/api/orders/find-by-user',
+  updateInvoiceOrderStatus: '/api/orders/update-status',
 };

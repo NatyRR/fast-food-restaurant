@@ -48,11 +48,13 @@ export const ShoppingCard: FC<ShoppingCartProps> = ({
 
         <Row className='gap-3'>
           {shoppingCartState.items?.map((item, index) => (
-            <Col xs={12} key={index}>
+            <Col xs={12} key={item.id}>
               <ProductCard
+                id={item.id}
                 name={item.name}
                 image={item.image}
                 price={item.price}
+                flavor={item.flavor}
                 quantity={item.quantity}
               />
             </Col>

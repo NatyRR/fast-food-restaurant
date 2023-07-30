@@ -1,9 +1,9 @@
-@import "/src/styles/atoms/button.module.scss";
+@import '/src/styles/atoms/button.module.scss';
 
 .container {
   height: 12vh;
-  background-color: #ffffff;
   display: flex;
+  background-color: transparent;
 
   .desktop {
     width: 100%;

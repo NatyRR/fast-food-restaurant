@@ -1,11 +1,11 @@
 //Main Tools
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 //Components
 import { Button } from '@/components/atoms/Button';
 
 //Boostrap
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Spinner } from 'react-bootstrap';
 
 //primeReact
 import { InputNumber } from 'primereact/inputnumber';
@@ -50,21 +50,39 @@ export const FormPay: FC<DialogProps> = ({ showModalForm, handleShow }) => {
   const [ref, setRef] = useState('');
   const { data: session } = useSession();
   const [address, setAddress] = useState('');
+  const [loading, setLoading] = useState(false);
   const [delivery, setDelivery] = useState(false);
-  const [transferMethod, setTransferMethod] = useState('');
   const [effectiveMethod, setEffectiveMethod] = useState('');
   const { shoppingCartState, handleShowForm } = useShoppingCart();
   const [moneyCash, setMoneyCash] = useState<number | null>(null);
   const [selectedMethod, setSelectedMethod] =
     useState<keyof typeof paymentMethodEnum>();
 
+  const handleReference = () => {
+    if (delivery) {
+      if (selectedMethod === paymentMethodEnum.CASH) {
+        return String(moneyCash);
+      } else {
+        return ref;
+      }
+    } else {
+      if (selectedMethod === paymentMethodEnum.CASH) {
+        return 'pago en el local';
+      } else {
+        return ref;
+      }
+    }
+  };
+
   const handleSubmit = async () => {
+    setLoading(true);
     const instance = axiosClient();
     const body = {
-      address: address,
       userId: session?.user.id,
       products: shoppingCartState.items,
-      paymentMethodId: selectedMethod,
+      address: address === '' ? 'Retiro en el local' : address,
+      paymentMethodId: selectedMethod === paymentMethodEnum.CASH ? 2 : 1,
+      reference: handleReference(),
     };
 
     const { data, status } = await instance.post(
@@ -73,6 +91,7 @@ export const FormPay: FC<DialogProps> = ({ showModalForm, handleShow }) => {
     );
 
     if (status !== 201) {
+      setLoading(false);
       toast()?.show({
         severity: 'error',
         summary: 'Error',
@@ -86,6 +105,8 @@ export const FormPay: FC<DialogProps> = ({ showModalForm, handleShow }) => {
       summary: 'Orden procesada',
       detail: 'Su orden ha sido procesada con exito',
     });
+    setLoading(false);
+    handleShow();
     return;
   };
 
@@ -180,43 +201,24 @@ export const FormPay: FC<DialogProps> = ({ showModalForm, handleShow }) => {
 
           {selectedMethod === paymentMethodEnum.TRANSFER && (
             <div className={classes.transferMethod}>
-              <div className={classes.selectAccount}>
-                <label>Seleccione una cuenta para transferir</label>
-                <Dropdown
-                  className='w-100'
-                  value={transferMethod}
-                  placeholder='Cuentas'
-                  options={transferMethodOptions}
-                  onChange={(e: DropdownChangeEvent) =>
-                    setTransferMethod(e.value)
-                  }
-                />
+              <div className={classes.account_Information}>
+                <h6>{accountInformation.cuenta}</h6>
+                <span>Numero de cuenta:</span>
+                <p>{accountInformation.numero_de_cuenta}</p>
+                <span>Cedula:</span>
+                <p>{accountInformation.cedula}</p>
+                <span>Tipo de cuenta:</span>
+                <p>{accountInformation.tipo_de_cuenta}</p>
+                <span>Telefono:</span>
+                <p>{accountInformation.telefono}</p>
               </div>
-              {accountInformation.map((item, index) => {
-                if (transferMethod === item.cuenta)
-                  return (
-                    <div className={classes.account_Information} key={index}>
-                      <h6>{item.cuenta}</h6>
-                      <span>Numero de cuenta:</span>
-                      <p>{item.numero_de_cuenta}</p>
-                      <span>Cedula:</span>
-                      <p>{item.cedula}</p>
-                      <span>Tipo de cuenta:</span>
-                      <p>{item.tipo_de_cuenta}</p>
-                    </div>
-                  );
-              })}
 
               <div className={classes.confirm_Payment}>
                 {/* imput file */}
                 <div className={classes.inputFile}>
                   <label>Inserte su comprobante aqui:</label>
 
-                  <input
-                    type='file'
-                    value={ref}
-                    onChange={(e) => setRef(e.target.value)}
-                  />
+                  <input type='file' />
                 </div>
                 <div className={classes.reference}>
                   <label>Ingrese el numero de referencia:</label>
@@ -234,12 +236,22 @@ export const FormPay: FC<DialogProps> = ({ showModalForm, handleShow }) => {
 
       <Row className={classes.footer_buttons}>
         <Col xs={6} className={classes.Col}>
-          <Button variant='naranja' onClick={handleShowForm}>
-            Cancelar
+          <Button disabled={loading} variant='naranja' onClick={handleShowForm}>
+            {loading ? (
+              <Spinner animation='border' variant='light' size='sm' />
+            ) : (
+              'Cancelar'
+            )}
           </Button>{' '}
         </Col>
         <Col xs={6}>
-          <Button variant='naranja'>Pagar</Button>
+          <Button disabled={loading} variant='naranja' onClick={handleSubmit}>
+            {loading ? (
+              <Spinner animation='border' variant='light' size='sm' />
+            ) : (
+              'Aceptar'
+            )}
+          </Button>
         </Col>
       </Row>
     </Dialog>

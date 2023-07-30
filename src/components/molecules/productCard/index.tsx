@@ -23,9 +23,11 @@ import React, { FC } from 'react';
 interface ProductCard extends ProductDataType {}
 
 export const ProductCard: FC<ProductDataType> = ({
-  image,
+  id,
   name,
+  image,
   price,
+  flavor,
   quantity,
 }) => {
   const { dispatch } = useShoppingCart();
@@ -33,7 +35,7 @@ export const ProductCard: FC<ProductDataType> = ({
   const add = () => {
     dispatch({
       type: shoppingCartCases.ADD_QUANTITY_TO_ITEM,
-      payload: { itemName: name },
+      payload: { id },
     });
     dispatch({
       type: shoppingCartCases.UPDATE_AMOUNT,
@@ -45,12 +47,12 @@ export const ProductCard: FC<ProductDataType> = ({
     if (quantity! > 1)
       dispatch({
         type: shoppingCartCases.REMOVE_QUANTITY_TO_ITEM,
-        payload: { itemName: name },
+        payload: { id },
       });
     else
       dispatch({
         type: shoppingCartCases.REMOVE_FROM_CART,
-        payload: { itemName: name },
+        payload: { id },
       });
 
     dispatch({
@@ -66,7 +68,7 @@ export const ProductCard: FC<ProductDataType> = ({
       </Col>
       <Col xs={6}>
         <div className={classes.infoProduct}>
-          <h3>{name}</h3>
+          <h3>{`${name}  ${flavor}`}</h3>
           <div className={classes.price}>
             <span>{price}$</span>
           </div>

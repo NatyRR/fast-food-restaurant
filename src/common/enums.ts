@@ -27,8 +27,8 @@ export const orderStatusEnum = Object.freeze({
 });
 
 export const InvoiceStatusEnum = Object.freeze({
-  pending: 'pending',
   paid: 'paid',
+  pending: 'pending',
   cancelled: 'cancelled',
 });
 
