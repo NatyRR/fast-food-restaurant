@@ -39,7 +39,6 @@ export const authOptions: NextAuthOptions = {
           `${process.env.NEXT_PUBLIC_API_URL}/api/auth/sign-in`,
           { email: credentials?.email, password: credentials?.password }
         );
-        console.log('🚀 ~ file: [...nextauth].ts:42 ~ authorize ~ data:', data);
         if (data.at) return data;
         else return null;
       },

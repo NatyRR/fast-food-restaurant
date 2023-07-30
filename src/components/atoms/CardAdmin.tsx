@@ -21,24 +21,24 @@ import {
 import { Dropdown } from 'primereact/dropdown';
 
 type CardAdminProps = {
-  id: number;
-  status: string;
-  address: string;
-  userName: UserDataType;
-  invoice: InvoiceDataType;
-  products: ProductDataType[];
+  id?: number;
+  status?: string;
+  address?: string;
+  User?: UserDataType;
+  Invoice?: InvoiceDataType;
+  OrderItems?: ProductDataType[];
 };
 
 export const CardAdmin: FC<CardAdminProps> = ({
   id,
   status,
-  userName,
-  invoice,
+  User,
+  Invoice,
   address,
-  products,
+  OrderItems,
 }) => {
   const [orderStatus, setOrderStatus] = useState(status);
-  const [StatuInvoice, setStatusInvoice] = useState(invoice.status);
+  const [statuInvoice, setStatusInvoice] = useState(Invoice?.status);
   return (
     <div className={classes.card}>
       <div className={classes.id}>
@@ -50,7 +50,7 @@ export const CardAdmin: FC<CardAdminProps> = ({
 
           <div className={classes.status}>
             <Dropdown
-              value={StatuInvoice}
+              value={statuInvoice}
               placeholder='Estatus pago'
               className={classes.dropdown}
               options={statusInvoiceOptions}
@@ -63,7 +63,7 @@ export const CardAdmin: FC<CardAdminProps> = ({
       <div className={classes.info_user}>
         <div className={classes.user}>
           <Person />
-          <span>{userName.name}</span>
+          <span>{User?.name}</span>
         </div>
         <div className={classes.total}>
           <CashCoin />
@@ -93,7 +93,7 @@ export const CardAdmin: FC<CardAdminProps> = ({
               <span>Lista</span>
             </div>
             <div className={classes.orderList}>
-              {products.map((item) => (
+              {OrderItems?.map((item) => (
                 <div className={classes.product} key={id}>
                   <span>{item.name}</span>
                   <span>{item.flavor}</span>

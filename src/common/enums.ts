@@ -21,15 +21,15 @@ export const adminStatusEnum = Object.freeze({
 });
 
 export const orderStatusEnum = Object.freeze({
-  PENDING: 'pending',
-  IN_PROGRESS: 'in_progress',
-  DONE: 'done',
+  pending: 'pending',
+  in_progress: 'in_progress',
+  done: 'done',
 });
 
 export const InvoiceStatusEnum = Object.freeze({
-  PENDING: 'pending',
-  PAID: 'paid',
-  CANCELLED: 'cancelled',
+  pending: 'pending',
+  paid: 'paid',
+  cancelled: 'cancelled',
 });
 
 export const statusProductEnum = Object.freeze({
