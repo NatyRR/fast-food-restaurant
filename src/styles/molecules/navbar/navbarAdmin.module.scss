@@ -13,53 +13,110 @@
     height: 8vh;
     padding-inline: 0;
   }
-
-  .title {
-    text-transform: uppercase;
-    color: rgb(253, 161, 24);
-    h1 {
-      margin: 0;
-      font-weight: 700;
-      font-size: 2rem !important;
-    }
+  .desktop {
+    width: 100%;
+    height: 12vh;
+    display: flex;
+    justify-content: space-between;
 
     @media (max-width: 768px) {
+      display: none;
+    }
+
+    .title {
+      text-transform: uppercase;
+      color: rgb(253, 161, 24);
       h1 {
-        font-size: 1rem !important;
+        margin: 0;
+        font-weight: 700;
+        font-size: 2rem !important;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 1rem !important;
+        }
+      }
+    }
+    .items {
+      gap: 3rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      @media (max-width: 768px) {
+        gap: 0.7rem;
+      }
+
+      .item_link {
+        text-decoration: none;
+        color: #fd8a1f;
+      }
+
+      .button {
+        width: 8rem;
+        @media (max-width: 768px) {
+          width: 50%;
+          margin-right: 0;
+          span {
+            font-size: 0.8rem;
+          }
+        }
+        &:hover {
+          border: #fd8a1f;
+          background-color: #fd8a1f;
+          border-radius: 18px;
+        }
       }
     }
   }
-  .items {
-    gap: 3rem;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-
-    @media (max-width: 768px) {
-      gap: 0.7rem;
+  .menuMobile {
+    display: none;
+    @media (max-width: 985px) {
+      display: flex;
+      justify-content: space-between;
+      padding-inline: 2rem;
+      width: 100%;
     }
 
-    .item_link {
-      text-decoration: none;
-      color: #fd8a1f;
-    }
-
-    .button {
-      width: 8rem;
-      @media (max-width: 768px) {
-        width: 50%;
-        margin-right: 0;
-        span {
-          font-size: 0.8rem;
-        }
+    .Title {
+      h1 {
+        font-weight: 600;
+        color: #fd8a1f;
       }
-      &:hover {
-        border: #fd8a1f;
-        background-color: #fd8a1f;
-        border-radius: 18px;
+    }
+
+    .toggle {
+      border: 3px solid #ffb617;
+      background: #ffb617;
+    }
+  }
+}
+.sidebar {
+  max-width: 15rem;
+
+  &_body {
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    .items_mobile {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      .item_link {
+        text-decoration: none;
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      span {
+        font-size: 0.8rem;
+        color: rgb(116, 115, 115);
       }
     }
   }
 }
-// adsasd

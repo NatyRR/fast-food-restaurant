@@ -35,6 +35,12 @@
       font-weight: 700;
       font-size: 3rem;
     }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+    }
   }
 
   .textos {
@@ -44,6 +50,10 @@
       font-weight: 600;
       color: rgb(177, 147, 147);
     }
+
+    @media (max-width: 768px) {
+      padding-inline: 0.9rem;
+    }
   }
 
   .button {
@@ -52,6 +62,10 @@
     &:hover {
       border: #fd8a1f;
       background-color: #fd8a1f;
+    }
+
+    @media (max-width: 768px) {
+      margin-top: 0.7rem;
     }
   }
   .imagen {

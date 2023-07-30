@@ -1,7 +1,7 @@
 import { CardAdmin } from "@/components/atoms/CardAdmin";
 import { orders } from "@/components/organisms/admin/utils";
 import { Col, Container, Row } from "react-bootstrap";
-import classes from "@/styles/organisms/orders/orders.module.scss";
+import classes from "@/styles/organisms/orders/orderCard.module.scss";
 import { Navbar } from "@/components/molecules/navbar";
 import { OrdersCard } from "@/components/organisms/order/OrdersCard";
 
