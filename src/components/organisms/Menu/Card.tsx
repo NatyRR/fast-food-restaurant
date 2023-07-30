@@ -46,11 +46,11 @@ export const Card: FC<CardProps> = ({
 
   const addToCart = () => {
     const { items } = shoppingCartState;
-    const product = { image, name, price, quantity: 1 };
+    const product = { id, image, name, flavor, price, quantity: 1 };
 
-    if (items?.find((item) => item.name === name)) {
+    if (items?.find((item) => item.flavor === flavor)) {
       dispatch({
-        payload: { itemName: name },
+        payload: { id },
         type: shoppingCartCases.ADD_QUANTITY_TO_ITEM,
       });
       dispatch({
@@ -86,7 +86,7 @@ export const Card: FC<CardProps> = ({
         </div>
       </div>
       <div className={classes.card}>
-        <h2 className={classes.title}>{name} de </h2>
+        <h2 className={classes.title}>{name} </h2>
         <h3 className={classes.title}>{flavor}</h3>
         <div className={classes.content}>
           <span className={classes.description}>{description}</span>

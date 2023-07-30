@@ -79,12 +79,6 @@ export const ProductCard: FC<ProductCardProps> = ({
         ...productData,
         principalProduct,
       };
-      console.log(
-        '🚀 ~ file: ProductCard.tsx:76 ~ handleUpdate ~ dataSend:',
-        dataSend
-      );
-
-      return;
 
       const { data, status } = await instance.put(
         `${process.env.NEXT_PUBLIC_API_URL}${endpoints.updateProduct}/${id}`,

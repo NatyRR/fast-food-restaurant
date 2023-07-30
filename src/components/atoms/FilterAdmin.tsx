@@ -28,7 +28,7 @@ export const FilterAdmin: FC<FilterAdminProps> = ({ handleFilter }) => {
         variant='naranja'
         onClick={() => handleFilter(InvoiceStatusEnum.cancelled)}
       >
-        No Pago
+        Cancelado
       </Button>
     </Container>
   );
