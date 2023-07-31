@@ -85,7 +85,7 @@ export const ProductCard: FC<ProductCardProps> = ({
         dataSend
       );
 
-      if (status === 200) {
+      if (status > 200) {
         toast()?.show({
           severity: 'success',
           summary: 'Exito',

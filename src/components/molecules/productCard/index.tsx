@@ -19,6 +19,7 @@ import classes from '@/styles/molecules/productCard/styles.module.scss';
 // types
 import { ProductDataType } from '@/types/shoppingCart';
 import React, { FC } from 'react';
+import { useSession } from 'next-auth/react';
 
 interface ProductCard extends ProductDataType {}
 

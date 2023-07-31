@@ -19,6 +19,7 @@ import classes from '@/styles/organisms/Menu/card.module.scss';
 
 //types
 import { FC } from 'react';
+import { useSession } from 'next-auth/react';
 
 type CardProps = {
   id?: number;
@@ -42,11 +43,22 @@ export const Card: FC<CardProps> = ({
   stock,
 }) => {
   const { toast } = useApp();
+  const { data: session } = useSession();
   const { dispatch, shoppingCartState } = useShoppingCart();
+  console.log('🚀 ~ file: Card.tsx:47 ~ session:', session);
 
   const addToCart = () => {
     const { items } = shoppingCartState;
     const product = { id, image, name, flavor, price, quantity: 1 };
+
+    if (!session) {
+      toast()?.show({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Debes iniciar sesion para agregar productos al carrito',
+      });
+      return;
+    }
 
     if (items?.find((item) => item.flavor === flavor)) {
       dispatch({

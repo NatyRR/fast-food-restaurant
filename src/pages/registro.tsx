@@ -139,9 +139,9 @@ export default function Registro() {
         />
 
         <div className={classes.text_button}>
-          <Link href={'#'} className={classes.link}>
+          <Link href={'/login'} className={classes.link}>
             <span>
-              Ya tienes cuenta ? Haz click <b>Aqui</b> para iniciar sesion
+              Click <b>Aqui</b> para iniciar sesion
             </span>
           </Link>
 

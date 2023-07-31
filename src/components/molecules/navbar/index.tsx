@@ -20,6 +20,7 @@ import {
   JournalText,
   BoxArrowInLeft,
   BoxArrowInRight,
+  PersonCircle,
 } from 'react-bootstrap-icons';
 
 //styles
@@ -69,6 +70,15 @@ export const Navbar: FC = () => {
                   <span>admin</span>
                 </Link>
               )}
+
+              <div className={classes.button}>
+                <Button variant='naranja'>
+                  <div className='d-flex justify-content-between'>
+                    <PersonCircle size={20} />
+                    <span>{session?.user.name}</span>
+                  </div>
+                </Button>
+              </div>
 
               <div
                 role='button'

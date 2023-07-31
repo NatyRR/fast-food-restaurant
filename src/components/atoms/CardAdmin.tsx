@@ -27,7 +27,9 @@ import { endpoints } from '@/utils/fetch';
 import { useApp } from '@/hooks/useApp';
 import { OrderDataType } from '@/types/order';
 
-interface CardAdminProps extends OrderDataType {}
+interface CardAdminProps extends OrderDataType {
+  handleRefecht: () => Promise<void>;
+}
 
 export const CardAdmin: FC<CardAdminProps> = ({
   id,
@@ -36,6 +38,7 @@ export const CardAdmin: FC<CardAdminProps> = ({
   Invoice,
   address,
   OrderItems,
+  handleRefecht,
 }) => {
   const { toast } = useApp();
   const [loading, setLoading] = useState(false);
@@ -55,23 +58,25 @@ export const CardAdmin: FC<CardAdminProps> = ({
       `${process.env.NEXT_PUBLIC_API_URL}${endpoints.updateInvoiceOrderStatus}`,
       body
     );
+    console.log('🚀 ~ file: CardAdmin.tsx:55 ~ updateOrder ~ status:', status);
 
     if (status > 200) {
-      setLoading(false);
       toast()?.show({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'Ocurrio un error al actualizar la orden',
+        severity: 'success',
+        summary: 'Orden procesada',
+        detail: 'Su orden ha sido actualizada con exito',
       });
+      handleRefecht();
+      setLoading(false);
       return;
     }
 
-    toast()?.show({
-      severity: 'success',
-      summary: 'Orden procesada',
-      detail: 'Su orden ha sido actualizada con exito',
-    });
     setLoading(false);
+    toast()?.show({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Ocurrio un error al actualizar la orden',
+    });
   };
 
   return (
