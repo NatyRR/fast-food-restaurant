@@ -17,12 +17,16 @@ import classes from '@/styles/organisms/administrador/admin.module.scss';
 import { OrderDataType } from '@/types/order';
 import { Socket } from 'socket.io-client';
 import { InvoiceStatusEnum } from '../../../common/enums';
+import { endpoints } from '@/utils/fetch';
+import axiosClient from '@/lib/axios';
+import { useApp } from '@/hooks/useApp';
 
 type AdminPageProps = {
   data: OrderDataType[] | null;
 };
 
 export const AdminPage: FC<AdminPageProps> = ({ data }) => {
+  const { toast } = useApp();
   const [orderList, setorderList] = useState<OrderDataType[] | null>(data);
   const [filterData, setFilterData] = useState<
     keyof typeof InvoiceStatusEnum | undefined
@@ -31,6 +35,29 @@ export const AdminPage: FC<AdminPageProps> = ({ data }) => {
   const handleFilter = (filter: keyof typeof InvoiceStatusEnum) => {
     if (filterData === filter) setFilterData(undefined);
     else setFilterData(filter);
+  };
+
+  const handleRefecht = async () => {
+    const instance = axiosClient();
+
+    const { data, status } = await instance.get(
+      `${process.env.NEXT_PUBLIC_API_URL}${endpoints.getAllorders}`
+    );
+    console.log(
+      '🚀 ~ file: index.tsx:46 ~ handleRefecht ~ data:',
+      status,
+      data
+    );
+
+    if (status === 200) {
+      setorderList(data);
+    } else {
+      toast()?.show({
+        severity: 'error',
+        summary: 'Error al cargar los pedidos',
+        detail: 'Ocurrio un error al cargar los pedidos',
+      });
+    }
   };
 
   return (
@@ -46,7 +73,7 @@ export const AdminPage: FC<AdminPageProps> = ({ data }) => {
             ?.filter((i) => i.Invoice?.status === filterData)
             .map((item) => (
               <Col xs={12} md={3} key={item.id} className={classes.col}>
-                <CardAdmin {...item} />
+                <CardAdmin {...item} handleRefecht={handleRefecht} />
               </Col>
             ))
         ) : (

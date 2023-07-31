@@ -59,9 +59,9 @@ export default function Login() {
 
   return (
     <Container className={classes.container} fluid>
-      <div className={classes.logo}>
+      <Link href='/' className={classes.logo}>
         <Image src='/asset/img/empanada3.jpg' alt='logo' />
-      </div>
+      </Link>
       <form className={classes.form} onSubmit={handleSubmit}>
         <div className='w-100'>
           <InputText

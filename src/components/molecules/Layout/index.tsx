@@ -26,7 +26,7 @@ interface Layoutprops {
 }
 
 export const Layout: FC<Layoutprops> = ({
-  title = 'Fact Food Restaurand',
+  title = 'Fast Food Restaurant "LYN"',
   children,
 }) => {
   const { shoppingCartState, handleShow } = useShoppingCart();

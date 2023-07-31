@@ -39,20 +39,15 @@
     }
 
     .input_email {
-      width: 95%;
+      width: 100%;
       height: 2.4rem;
-
-      @media (max-width: 768px) {
-        width: 85%;
-        margin-left: 1rem;
-      }
     }
 
     .input_password {
       height: 2.4rem;
-      width: 100% !important;
-      @media (max-width: 768px) {
-        margin-left: 1rem;
+      width: 100%;
+      :global(.p-password-input) {
+        width: 100%;
       }
     }
 
